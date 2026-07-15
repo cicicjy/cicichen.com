@@ -1,0 +1,364 @@
+{
+  "meta": {
+    "name": "Cici Air / Motion",
+    "description": "A light editorial portfolio system that combines Apple-like spatial calm with outdoor movement signals expressed through restrained neon yellow-green accents.",
+    "source_references": [
+      "monetto identity palette reference",
+      "No Limits editorial feed reference",
+      "green offset portrait outline reference",
+      "Andrew B. Myers scattered still-life reference",
+      "early personal-website resume reference",
+      "Cici black-and-white standing portrait with single-edge outline",
+      "Cici personal outdoor portrait for mobile"
+    ],
+    "created_at": "2026-07-12"
+  },
+  "design_system": {
+    "color": {
+      "palette_type": "monochromatic with high-visibility accent",
+      "primary": {
+        "hex": "#1D1D1F",
+        "role": "Primary text, solid calls to action, and high-contrast controls"
+      },
+      "secondary": {
+        "hex": "#F5F5F7",
+        "role": "Main page field and calm neutral canvas"
+      },
+      "accent": {
+        "hex": "#DFFF00",
+        "role": "Subject outline, micro-stickers, highlighted word, route line, and interaction feedback"
+      },
+      "neutral": {
+        "scale": ["#FFFFFF", "#F5F5F7", "#E9E9EC", "#D2D2D7", "#A1A1A6", "#6E6E73", "#242426", "#1D1D1F"],
+        "usage": "White and cool gray surfaces carry most of the interface; charcoal is reserved for Field Notes; medium grays support metadata and secondary copy."
+      },
+      "semantic": {
+        "success": "#2E7D32",
+        "warning": "#A15C00",
+        "error": "#C0362C",
+        "info": "#246BCE"
+      },
+      "surface": {
+        "background": "#F5F5F7",
+        "card": "#FFFFFF",
+        "elevated": "rgba(255,255,255,0.94)"
+      },
+      "contrast_strategy": "Dark-on-light dominant; neon yellow-green never carries small text on a light background and is paired with charcoal when used as a fill."
+    },
+    "typography": {
+      "type_scale": {
+        "display": {
+          "size": "clamp(64px, 9.2vw, 148px)",
+          "weight": "250",
+          "line_height": "0.90",
+          "tracking": "-0.055em"
+        },
+        "heading_1": {
+          "size": "clamp(62px, 7.4vw, 118px)",
+          "weight": "280",
+          "line_height": "0.94",
+          "tracking": "-0.05em"
+        },
+        "heading_2": {
+          "size": "clamp(40px, 5vw, 78px)",
+          "weight": "300",
+          "line_height": "1.02",
+          "tracking": "-0.04em"
+        },
+        "heading_3": {
+          "size": "clamp(30px, 3.5vw, 50px)",
+          "weight": "340",
+          "line_height": "1.05",
+          "tracking": "-0.035em"
+        },
+        "body": {
+          "size": "17px",
+          "weight": "350",
+          "line_height": "1.62",
+          "tracking": "-0.012em"
+        },
+        "body_small": {
+          "size": "15px",
+          "weight": "400",
+          "line_height": "1.62",
+          "tracking": "-0.008em"
+        },
+        "caption": {
+          "size": "10px",
+          "weight": "500",
+          "line_height": "1.4",
+          "tracking": "0"
+        },
+        "overline": {
+          "size": "11px",
+          "weight": "500",
+          "line_height": "1.4",
+          "tracking": "0.02em"
+        }
+      },
+      "font_families": {
+        "heading": "-apple-system, BlinkMacSystemFont, SF Pro Display, Helvetica Neue, PingFang SC, Arial, sans-serif",
+        "body": "-apple-system, BlinkMacSystemFont, SF Pro Text, Helvetica Neue, PingFang SC, Arial, sans-serif",
+        "mono": "Same system sans stack for quiet metadata rather than a technical mono voice"
+      },
+      "font_style_notes": "Neutral system grotesk with very light display weights, calm sentence case, generous leading, and tightly balanced large headings."
+    },
+    "spacing": {
+      "base_unit": "4px",
+      "scale": ["4px", "8px", "12px", "16px", "20px", "24px", "32px", "48px", "64px", "96px", "128px", "160px", "200px"],
+      "content_density": "spacious",
+      "section_rhythm": "Long 120–200px section openings alternate with calmer 72–132px content intervals; mobile compresses without becoming dense."
+    },
+    "layout": {
+      "grid_system": "Fluid 12-column editorial grid with a single-column mobile collapse",
+      "max_content_width": "1500px",
+      "columns": "12 desktop, 1 mobile",
+      "gutter": "clamp(14px, 1.8vw, 30px)",
+      "breakpoints": ["760px", "1120px"],
+      "alignment_tendency": "Asymmetric grid with deliberate stagger and large quiet fields"
+    },
+    "shape": {
+      "border_radius": {
+        "small": "4px",
+        "medium": "18px",
+        "large": "28px",
+        "pill": "999px"
+      },
+      "border_usage": "Subtle 1px neutral dividers and inset media frames",
+      "divider_style": "Hairline cool-gray rules; one route divider uses neon yellow-green"
+    },
+    "elevation": {
+      "shadow_style": "Nearly none, with one soft diffused mobile navigation shadow",
+      "levels": {
+        "low": "0 1px 0 rgba(29,29,31,0.08)",
+        "medium": "0 18px 50px rgba(29,29,31,0.10)",
+        "high": "none"
+      },
+      "depth_cues": "Whitespace, overlapping type and image, subtle surface shifts, and restrained blur in navigation"
+    },
+    "iconography": {
+      "style": "Minimal directional arrows and geometric micro-marks",
+      "stroke_weight": "1px",
+      "size_scale": ["8px", "16px", "20px", "24px"],
+      "preferred_set": "Native Unicode arrows plus custom CSS marks"
+    },
+    "motion": {
+      "easing": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "duration_scale": {
+        "micro": "140ms",
+        "normal": "320ms",
+        "macro": "760–900ms"
+      },
+      "entrance_pattern": "Desktop capabilities begin as four tightly clustered stickers on a blank field; card surfaces, sticker placement, heading, and copy reveal in separate wheel-scrubbed stages",
+      "exit_pattern": "No choreographed exits; navigation closes with a short fade and lift",
+      "philosophy": "Minimal functional motion with a different but related gesture in each section"
+    },
+    "components": {
+      "button_style": "Light pill outlines and one charcoal primary pill; neon appears on hover and focus",
+      "input_style": "Large clickable media placeholders with 1px frames, quiet grid, and compact metadata pills",
+      "card_style": "Capability surfaces are invisible until scroll reveals their hairline frames; products form a compact one-screen constellation; Experience uses a flat editorial two-column resume instead of floating cards",
+      "navigation_pattern": "Fixed translucent desktop bar; compact frosted popover menu on smaller screens",
+      "modal_style": "Not used",
+      "list_style": "Horizontal work index, bordered case studies, and a vertical 1px route timeline",
+      "component_notes": "Each desktop section owns one neon behavior: Hero portrait outline and title mark, consistently colored person-sticker outlines, product plinth hover, resume rules, or contact emphasis."
+    }
+  },
+  "design_style": {
+    "aesthetic": {
+      "mood": ["light", "alert", "outdoorsy", "precise", "optimistic"],
+      "visual_metaphor": "A quiet editorial field crossed by training markers and route signals",
+      "era_influence": "Contemporary Apple product editorial mixed with 2020s independent sports-culture graphics",
+      "genre": "Minimal portfolio editorial with athletic micro-graphics",
+      "personality_traits": ["observant", "self-directed", "calm", "energetic", "considered"],
+      "adjectives": ["airy", "fine", "mobile", "clean", "high-visibility"]
+    },
+    "visual_language": {
+      "complexity": "minimal",
+      "ornamentation": "subtle accents",
+      "whitespace_usage": "expansive and structural",
+      "visual_weight_distribution": "Light neutral fields carry most screens; weight concentrates briefly in portrait, large headings, and one charcoal notes section",
+      "focal_strategy": "Progressive reveal with one neon protagonist per section",
+      "contrast_level": "High for type, low for surfaces, selective high-chroma accent",
+      "texture_usage": "Almost none; a barely visible page grain and analog portrait softness"
+    },
+    "composition": {
+      "hierarchy_method": "Scale contrast, spatial isolation, medium-weight typography, and selective accent color",
+      "balance_type": "asymmetric",
+      "flow_direction": "Top-to-bottom with subtle horizontal forward motion",
+      "grouping_strategy": "Large sectional whitespace, thin dividers, and aligned metadata clusters",
+      "negative_space_role": "Primary carrier of calm, premium tone, and reading rhythm"
+    },
+    "imagery": {
+      "photo_treatment": "Desktop Hero uses the original high-resolution black-and-white standing portrait as a restrained editorial panel beginning near the 49% page line, preserving its fluorescent offset outline and studio light; the left identity field and far-right whitespace remain quiet. Mobile retains the previous outdoor portrait.",
+      "illustration_style": "No standalone illustration system; CSS route lines and stickers act as micro-illustrations",
+      "graphic_elements": "Four large transparent person stickers with fluorescent outlines, selective colored words, 1px rules, tiny status marks, and CSS-built product plinths",
+      "pattern_usage": "Very faint 64px upload-placeholder grid only",
+      "image_shape": "A crisp 3:4 editorial Hero panel, transparent capability silhouettes, and nine single-front transparent product cutouts scaled by pack volume"
+    },
+    "interaction_feel": {
+      "feedback_style": "Quiet, immediate, and legible",
+      "hover_behavior": "Settled capability cards receive a fluorescent fill; full-color products ease to 110% scale with a lime shadow while their acrylic plinth catches lime; resume links use restrained lime rules",
+      "transition_personality": "smooth glide",
+      "loading_style": "Static first paint; no blocking loader",
+      "microinteraction_density": "low"
+    },
+    "brand_voice_in_ui": {
+      "tone": "Clear, thoughtful, and forward-moving",
+      "formality": "Professional but personal",
+      "cta_style": "Friendly invitation with direct verbs",
+      "empty_state_approach": "Calm editorial placeholders that state recommended content and ratio",
+      "error_tone": "Plain, specific, and non-judgmental"
+    }
+  },
+  "visual_effects": {
+    "overview": {
+      "effect_intensity": "subtle-accent",
+      "performance_tier": "lightweight",
+      "fallback_strategy": "Disable motion through prefers-reduced-motion and retain the complete static composition",
+      "primary_technology": "CSS plus small native JavaScript"
+    },
+    "background_effects": {
+      "type": "noise-field",
+      "description": "A nearly invisible fixed monochrome grain prevents the large neutral fields from feeling sterile.",
+      "technology": "Inline SVG feTurbulence in CSS background-image",
+      "params": {
+        "color_palette": ["#1D1D1F"],
+        "speed": "static",
+        "density": "very low",
+        "opacity": "0.01",
+        "blend_mode": "multiply"
+      }
+    },
+    "particle_systems": {
+      "enabled": false,
+      "type": "none",
+      "description": "No particles; motion remains editorial and purposeful.",
+      "technology": "none",
+      "params": {
+        "count": "0",
+        "shape": "none",
+        "size_range": "none",
+        "movement_pattern": "none",
+        "color_behavior": "none",
+        "interaction": "none",
+        "spawn_area": "none"
+      }
+    },
+    "3d_elements": {
+      "enabled": true,
+      "type": "CSS 2.5D acrylic product plinths",
+      "description": "Single-front transparent product cutouts sit on three-face translucent acrylic blocks; hover triggers a short elastic lift and a restrained fluorescent-green refraction.",
+      "technology": "CSS transforms, clip-path, pseudo-elements, and flat shadows",
+      "params": {
+        "renderer": "none",
+        "lighting": "single editorial drop shadow",
+        "camera": "fixed isometric suggestion",
+        "materials": "frosted neutral acrylic with chartreuse refraction on hover",
+        "geometry": "three-face isometric acrylic plinth",
+        "post_processing": [],
+        "interaction_model": "hover and keyboard focus"
+      }
+    },
+    "shader_effects": {
+      "enabled": false,
+      "type": "none",
+      "description": "No shaders or GPU distortion.",
+      "technology": "none",
+      "params": {
+        "uniforms": {},
+        "vertex_manipulation": "none",
+        "fragment_output": "none",
+        "noise_type": "none",
+        "distortion": "none"
+      }
+    },
+    "scroll_effects": {
+      "parallax": {
+        "enabled": false,
+        "layers": "0",
+        "depth_range": "none",
+        "speed_curve": "none"
+      },
+      "scroll_triggered_animations": {
+        "enabled": true,
+        "trigger_points": "Capabilities use staged ranges across 310vh: cards 10–38%, stickers 18–74%, heading 36–56%, copy 64–88%",
+        "animation_type": "reverse-FLIP sticker dispersion plus independent card clip, heading fade, and copy reveal",
+        "scrub_behavior": "continuous wheel-driven scrub; all other desktop effects remain hover-based"
+      },
+      "scroll_morphing": {
+        "enabled": false,
+        "description": "No scroll morphing."
+      }
+    },
+    "text_effects": {
+      "type": "accent-word and underline",
+      "description": "One word turns neon on a charcoal field; another receives a thin neon inset underline on white.",
+      "technology": "CSS color and inset box-shadow",
+      "params": {
+        "split_strategy": "by-word",
+        "animation_per_unit": "none",
+        "stagger": "none",
+        "effect_style": "static selective emphasis"
+      }
+    },
+    "cursor_effects": {
+      "enabled": false,
+      "type": "none",
+      "description": "Native cursor retained for usability.",
+      "params": {
+        "shape": "native",
+        "size": "native",
+        "blend_mode": "normal",
+        "trail": "none",
+        "interaction_zone": "none"
+      }
+    },
+    "image_effects": {
+      "type": "editorial portrait panel, transparent cutouts, and product still life",
+      "description": "Desktop uses the untouched high-resolution black-and-white Hero photograph, transparent capability stickers, and real product/packaging work arranged as an editorial still life.",
+      "technology": "Prepared raster/SVG assets plus CSS object-fit, filters, drop shadows, and transforms",
+      "params": {
+        "filter_pipeline": "products remain in their source color; Hero and capability portraits remain black-and-white with fluorescent outline",
+        "hover_transform": "680ms elastic product lift peaking at -36px and settling at -14px",
+        "reveal_animation": "scroll-scrubbed capability card, sticker, heading, and copy placement",
+        "distortion_type": "none"
+      }
+    },
+    "glassmorphism_neumorphism": {
+      "enabled": true,
+      "style": "frosted-layers",
+      "params": {
+        "blur_radius": "20px",
+        "transparency": "0.80–0.94",
+        "border_treatment": "1px neutral hairline",
+        "shadow_type": "soft diffused, navigation only",
+        "light_source_angle": "ambient"
+      }
+    },
+    "canvas_drawings": {
+      "enabled": false,
+      "type": "none",
+      "description": "No Canvas rendering.",
+      "technology": "none",
+      "params": {
+        "draw_method": "none",
+        "animation_loop": "none",
+        "color_scheme": "none",
+        "responsiveness": "none",
+        "interaction": "none"
+      }
+    },
+    "svg_animations": {
+      "enabled": true,
+      "type": "path-draw",
+      "description": "The retained mobile experience keeps its route draw; the new desktop Hero remains still and photographic.",
+      "params": {
+        "animation_method": "CSS stroke-dashoffset",
+        "path_morphing": "none",
+        "stroke_animation": "1.5s one-shot draw",
+        "filter_effects": "none"
+      }
+    },
+    "composite_notes": "The visual system intentionally avoids WebGL, particles, custom cursors, continuous marquees, and heavy blur. Neon is mostly a verb—outlining, labeling, marking, or underlining—with two controlled fill moments on capability cards and product plinth hover."
+  }
+}
