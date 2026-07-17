@@ -3333,10 +3333,9 @@
           left: var(--product-x);
           width: clamp(105px, 9vw, 130px);
           height: 230px;
-          transform: translateX(calc(-50% + var(--active-shift-x, 0px))) translateY(var(--active-shift-y, 0px));
+          transform: translateX(-50%);
           --product-w: 55px;
-          transition: filter 320ms var(--ease), opacity 320ms var(--ease), transform 620ms var(--ease);
-          will-change: transform;
+          transition: filter 320ms var(--ease), opacity 320ms var(--ease);
         }
 
         .d-product-trigger {
@@ -3350,7 +3349,6 @@
           color: inherit;
           cursor: pointer;
           font: inherit;
-          perspective: 720px;
         }
 
         .d-product-trigger:focus-visible {
@@ -3377,17 +3375,9 @@
           z-index: 2;
           width: var(--product-w);
           pointer-events: none;
-          transform: translateX(-50%) translateY(var(--product-lift, 0px)) scale(var(--product-item-scale, 1)) rotateX(var(--product-tilt-x, 0deg)) rotateY(var(--product-tilt-y, 0deg));
+          transform: translateX(-50%) scale(var(--product-item-scale, 1));
           transform-origin: 50% 100%;
-          transform-style: preserve-3d;
-          transition: transform 480ms var(--ease);
-          will-change: transform;
-        }
-
-        .d-product-trigger:hover .d-product-object,
-        .d-product-trigger:focus-visible .d-product-object,
-        .d-stilllife-item.is-active .d-product-object {
-          --product-lift: -10px;
+          transition: transform 360ms var(--ease);
         }
 
         .d-product-img {
@@ -3469,7 +3459,7 @@
           border-radius: 50%;
           background: rgba(54, 59, 56, 0.35);
           filter: blur(4px);
-          transform: translateX(var(--product-shadow-x, 0px)) skewX(-18deg);
+          transform: skewX(-18deg);
         }
 
         .d-acrylic-plinth::after {
@@ -3481,7 +3471,7 @@
           border-radius: 50%;
           background: rgba(58, 63, 60, 0.13);
           filter: blur(11px);
-          transform: translateX(var(--product-shadow-x, 0px)) skewX(-21deg) rotate(-2deg);
+          transform: skewX(-21deg) rotate(-2deg);
         }
 
         .d-acrylic-plinth > span {
@@ -3544,14 +3534,14 @@
         .d-product-trigger:focus-visible .d-acrylic-plinth::before,
         .d-stilllife-item.is-active .d-acrylic-plinth::before {
           background: rgba(102, 127, 0, 0.42);
-          transform: translateX(var(--product-shadow-x, 0px)) skewX(-20deg) scale(0.88);
+          transform: skewX(-20deg) scale(0.88);
         }
 
         .d-product-trigger:hover .d-acrylic-plinth::after,
         .d-product-trigger:focus-visible .d-acrylic-plinth::after,
         .d-stilllife-item.is-active .d-acrylic-plinth::after {
           background: rgba(126, 156, 0, 0.3);
-          transform: translateX(var(--product-shadow-x, 0px)) skewX(-21deg) rotate(-2deg) scale(1.08);
+          transform: skewX(-21deg) rotate(-2deg) scale(1.08);
         }
 
         .d-stilllife-scene.has-active-product .d-stilllife-item:not(.is-active) {
@@ -3563,10 +3553,6 @@
         .d-stilllife-scene.has-active-product .d-stilllife-item:not(.is-active):focus-within {
           filter: grayscale(0.2);
           opacity: 0.58;
-        }
-
-        .d-stilllife-item.is-active {
-          z-index: 24;
         }
 
         .d-product-evidence-line {
@@ -3598,8 +3584,8 @@
           top: 0;
           left: 0;
           z-index: 20;
-          width: min(1120px, 70vw);
-          padding: clamp(20px, 2vw, 30px);
+          width: min(530px, 41vw);
+          padding: 18px;
           border: 1px solid rgba(17, 17, 15, 0.16);
           background: rgba(249, 249, 245, 0.96);
           box-shadow: 0 28px 70px rgba(37, 43, 28, 0.13);
@@ -3627,37 +3613,6 @@
           border-bottom: 1px solid rgba(17, 17, 15, 0.13);
         }
 
-        .d-product-evidence__actions {
-          display: flex;
-          align-items: center;
-          gap: 7px;
-        }
-
-        .d-product-evidence__step {
-          min-width: 52px;
-          height: 30px;
-          padding: 0 10px;
-          border: 1px solid rgba(17, 17, 15, 0.16);
-          background: transparent;
-          color: rgba(17, 17, 15, 0.68);
-          cursor: pointer;
-          font: inherit;
-          font-size: 8px;
-          font-weight: 600;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          transition: background 200ms ease, border-color 200ms ease, color 200ms ease, transform 200ms ease;
-        }
-
-        .d-product-evidence__step:hover,
-        .d-product-evidence__step:focus-visible {
-          border-color: var(--d-lime);
-          background: var(--d-lime);
-          color: #171714;
-          outline: none;
-          transform: translateY(-1px);
-        }
-
         .d-product-evidence__eyebrow {
           color: #769b00;
           font-size: 8px;
@@ -3668,7 +3623,7 @@
 
         .d-product-evidence__title {
           margin-top: 7px;
-          font-size: clamp(28px, 2.65vw, 44px);
+          font-size: clamp(21px, 1.75vw, 28px);
           font-weight: 450;
           letter-spacing: -0.04em;
           line-height: 1;
@@ -3707,14 +3662,14 @@
 
         .d-product-evidence__body {
           display: grid;
-          grid-template-columns: minmax(0, 1.22fr) minmax(280px, 0.78fr);
-          gap: clamp(18px, 2vw, 32px);
-          padding-top: clamp(18px, 2vw, 28px);
+          grid-template-columns: minmax(118px, 0.72fr) minmax(0, 1.28fr);
+          gap: 15px;
+          padding-top: 15px;
         }
 
         .d-product-evidence__poster {
           position: relative;
-          height: clamp(390px, 42vw, 570px);
+          min-height: 238px;
           overflow: hidden;
           border: 1px solid rgba(17, 17, 15, 0.12);
           background: #ecece5;
@@ -3749,14 +3704,14 @@
 
         .d-product-evidence__notes {
           display: grid;
-          align-content: center;
-          gap: 12px;
+          align-content: start;
+          gap: 8px;
         }
 
         .d-evidence-note {
           position: relative;
-          min-height: 112px;
-          padding: 18px 18px 20px;
+          min-height: 71px;
+          padding: 11px 12px 12px;
           border: 1px solid rgba(17, 17, 15, 0.12);
           background: #fffffc;
           opacity: 0;
@@ -3776,7 +3731,7 @@
         .d-evidence-note__label {
           margin-bottom: 6px;
           color: #769b00;
-          font-size: 9px;
+          font-size: 7px;
           font-weight: 700;
           letter-spacing: 0.13em;
           text-transform: uppercase;
@@ -3784,8 +3739,8 @@
 
         .d-evidence-note__text {
           color: rgba(17, 17, 15, 0.72);
-          font-size: clamp(11px, 0.92vw, 14px);
-          line-height: 1.48;
+          font-size: 10px;
+          line-height: 1.38;
         }
 
         .d-experience {
@@ -4089,27 +4044,13 @@
           height: clamp(720px, 69vw, 790px);
         }
 
-        .d-product-evidence {
-          width: min(760px, 70vw);
-          padding: 18px;
-        }
-
-        .d-product-evidence__body {
-          grid-template-columns: minmax(0, 1.05fr) minmax(220px, 0.95fr);
-          gap: 14px;
-        }
-
-        .d-product-evidence__poster {
-          height: clamp(330px, 44vw, 470px);
-        }
-
         .d-evidence-note {
-          min-height: 92px;
-          padding: 12px 12px 14px;
+          min-height: 64px;
+          padding: 9px 10px 10px;
         }
 
         .d-evidence-note__text {
-          font-size: 10px;
+          font-size: 9px;
         }
 
         .d-resume__body {
@@ -4429,14 +4370,10 @@
               <aside class="d-product-evidence" id="product-evidence" aria-hidden="true" aria-live="polite" data-product-evidence>
                 <header class="d-product-evidence__header">
                   <div>
-                    <p class="d-product-evidence__eyebrow">Product story · browse the collection</p>
+                    <p class="d-product-evidence__eyebrow">Product story · click another object to switch</p>
                     <h3 class="d-product-evidence__title"><span data-evidence-index>01</span> · <span data-evidence-name>Classic Milk Tea</span><span class="d-product-evidence__volume" data-evidence-volume>360 ML</span></h3>
                   </div>
-                  <div class="d-product-evidence__actions">
-                    <button class="d-product-evidence__step" type="button" aria-label="Show previous product" data-product-evidence-prev>← Prev</button>
-                    <button class="d-product-evidence__step" type="button" aria-label="Show next product" data-product-evidence-next>Next →</button>
-                    <button class="d-product-evidence__close" type="button" aria-label="Close product notes" data-product-evidence-close>×</button>
-                  </div>
+                  <button class="d-product-evidence__close" type="button" aria-label="Close product notes" data-product-evidence-close>×</button>
                 </header>
                 <div class="d-product-evidence__body">
                   <figure class="d-product-evidence__poster">
@@ -4972,8 +4909,6 @@
       const productEvidenceImage = document.querySelector("[data-evidence-image]");
       const productEvidencePlaceholder = document.querySelector("[data-evidence-placeholder]");
       const productEvidenceClose = document.querySelector("[data-product-evidence-close]");
-      const productEvidencePrevious = document.querySelector("[data-product-evidence-prev]");
-      const productEvidenceNext = document.querySelector("[data-product-evidence-next]");
       let capabilityMetrics = [];
       let activeProductItem = null;
 
@@ -5179,25 +5114,19 @@
       function positionProductEvidence(item) {
         if (!productScene || !productEvidence || !productEvidencePath || !item) return;
         const sceneRect = productScene.getBoundingClientRect();
+        const itemRect = item.getBoundingClientRect();
         const panelWidth = productEvidence.offsetWidth;
         const panelHeight = productEvidence.offsetHeight;
-        const originalTargetX = item.offsetLeft;
-        const originalTargetY = item.offsetTop + item.offsetHeight * 0.78;
-        const placeRight = originalTargetX < sceneRect.width * 0.52;
-        const panelX = placeRight ? sceneRect.width - panelWidth - 18 : 18;
-        let panelY = originalTargetY - panelHeight * 0.46;
+        const targetX = itemRect.left - sceneRect.left + itemRect.width / 2;
+        const targetY = itemRect.top - sceneRect.top + itemRect.height * 0.78;
+        const placeRight = targetX < sceneRect.width * 0.52;
+        const preferredGap = Math.max(44, sceneRect.width * 0.045);
+        let panelX = placeRight
+          ? targetX + itemRect.width / 2 + preferredGap
+          : targetX - panelWidth - itemRect.width / 2 - preferredGap;
+        let panelY = targetY - panelHeight * 0.42;
+        panelX = clamp(panelX, 18, sceneRect.width - panelWidth - 18);
         panelY = clamp(panelY, 18, sceneRect.height - panelHeight - 18);
-
-        const freeAreaStart = placeRight ? 0 : panelX + panelWidth;
-        const freeAreaEnd = placeRight ? panelX : sceneRect.width;
-        const focusedTargetX = (freeAreaStart + freeAreaEnd) / 2;
-        const activeShiftX = focusedTargetX - originalTargetX;
-        const focusedTargetY = panelY + panelHeight * 0.48;
-        const activeShiftY = focusedTargetY - originalTargetY;
-        item.style.setProperty("--active-shift-x", activeShiftX.toFixed(2) + "px");
-        item.style.setProperty("--active-shift-y", activeShiftY.toFixed(2) + "px");
-        const targetX = focusedTargetX;
-        const targetY = focusedTargetY;
 
         productEvidence.style.setProperty("--evidence-x", panelX.toFixed(2) + "px");
         productEvidence.style.setProperty("--evidence-y", panelY.toFixed(2) + "px");
@@ -5244,11 +5173,6 @@
         const previousTrigger = activeProductItem?.querySelector(".d-product-trigger");
         productItems.forEach(function (item) {
           item.classList.remove("is-active");
-          item.style.removeProperty("--active-shift-x");
-          item.style.removeProperty("--active-shift-y");
-          item.style.removeProperty("--product-tilt-x");
-          item.style.removeProperty("--product-tilt-y");
-          item.style.removeProperty("--product-shadow-x");
           item.querySelector(".d-product-trigger")?.setAttribute("aria-expanded", "false");
         });
         productScene.classList.remove("has-active-product");
@@ -5269,10 +5193,6 @@
         productItems.forEach(function (candidate) {
           const selected = candidate === item;
           candidate.classList.toggle("is-active", selected);
-          if (!selected) {
-            candidate.style.removeProperty("--active-shift-x");
-            candidate.style.removeProperty("--active-shift-y");
-          }
           candidate.querySelector(".d-product-trigger")?.setAttribute("aria-expanded", String(selected));
         });
         activeProductItem = item;
@@ -5285,27 +5205,9 @@
         });
       }
 
-      const supportsProductTilt = window.matchMedia("(pointer: fine)").matches && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
       productItems.forEach(function (item) {
-        const trigger = item.querySelector(".d-product-trigger");
-        trigger?.addEventListener("click", function () {
+        item.querySelector(".d-product-trigger")?.addEventListener("click", function () {
           openProductEvidence(item);
-        });
-
-        if (!trigger || !supportsProductTilt) return;
-        trigger.addEventListener("pointermove", function (event) {
-          const rect = trigger.getBoundingClientRect();
-          const normalizedX = clamp((event.clientX - rect.left) / rect.width, 0, 1) * 2 - 1;
-          const normalizedY = clamp((event.clientY - rect.top) / rect.height, 0, 1) * 2 - 1;
-          item.style.setProperty("--product-tilt-x", (-normalizedY * 3.5).toFixed(2) + "deg");
-          item.style.setProperty("--product-tilt-y", (normalizedX * 5).toFixed(2) + "deg");
-          item.style.setProperty("--product-shadow-x", (normalizedX * 8).toFixed(2) + "px");
-        }, { passive: true });
-        trigger.addEventListener("pointerleave", function () {
-          item.style.setProperty("--product-tilt-x", "0deg");
-          item.style.setProperty("--product-tilt-y", "0deg");
-          item.style.setProperty("--product-shadow-x", "0px");
         });
       });
 
@@ -5316,21 +5218,6 @@
 
       productEvidenceClose?.addEventListener("click", function () {
         closeProductEvidence({ restoreFocus: true });
-      });
-
-      function selectAdjacentProduct(direction) {
-        if (!activeProductItem || !productItems.length) return;
-        const currentIndex = productItems.indexOf(activeProductItem);
-        const nextIndex = (currentIndex + direction + productItems.length) % productItems.length;
-        openProductEvidence(productItems[nextIndex]);
-      }
-
-      productEvidencePrevious?.addEventListener("click", function () {
-        selectAdjacentProduct(-1);
-      });
-
-      productEvidenceNext?.addEventListener("click", function () {
-        selectAdjacentProduct(1);
       });
 
       productScene?.addEventListener("pointerdown", function (event) {
@@ -5347,8 +5234,11 @@
         }
         if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
         event.preventDefault();
+        const currentIndex = productItems.indexOf(activeProductItem);
         const direction = event.key === "ArrowRight" ? 1 : -1;
-        selectAdjacentProduct(direction);
+        const nextIndex = (currentIndex + direction + productItems.length) % productItems.length;
+        openProductEvidence(productItems[nextIndex]);
+        productItems[nextIndex].querySelector(".d-product-trigger")?.focus();
       });
 
       function clamp(value, minimum, maximum) {
