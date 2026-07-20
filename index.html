@@ -3555,30 +3555,6 @@
           opacity: 0.58;
         }
 
-        .d-product-evidence-line {
-          position: absolute;
-          inset: 0;
-          z-index: 18;
-          width: 100%;
-          height: 100%;
-          overflow: visible;
-          pointer-events: none;
-        }
-
-        .d-product-evidence-line path {
-          fill: none;
-          stroke: var(--d-lime);
-          stroke-dasharray: 7 7;
-          stroke-linecap: round;
-          stroke-width: 1.2;
-          opacity: 0;
-          transition: opacity 180ms ease;
-        }
-
-        .d-stilllife-scene.has-active-product .d-product-evidence-line path {
-          opacity: 0.9;
-        }
-
         .d-product-evidence {
           position: absolute;
           top: 0;
@@ -3742,6 +3718,276 @@
           font-size: 10px;
           line-height: 1.38;
         }
+
+        /* Desktop product river: one invisible horizontal rail, nine calibrated
+           flat product cut-outs, and a full-screen editorial case view. */
+        body.is-product-evidence-open {
+          overflow: hidden;
+        }
+
+        .d-products .d-stilllife-scene {
+          position: relative;
+          height: clamp(520px, 47vw, 680px);
+          margin-top: clamp(42px, 4vw, 68px);
+          overflow: hidden;
+          isolation: isolate;
+        }
+
+        .d-products .d-stilllife-scene.has-active-product {
+          z-index: 1200;
+          overflow: visible;
+        }
+
+        .d-products .d-stilllife-scene::before,
+        .d-products .d-stilllife-scene::after {
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          z-index: 12;
+          width: clamp(46px, 7vw, 130px);
+          content: "";
+          pointer-events: none;
+        }
+
+        .d-products .d-stilllife-scene::before {
+          left: 0;
+          background: linear-gradient(90deg, #f6f5f1 8%, rgba(246, 245, 241, 0));
+        }
+
+        .d-products .d-stilllife-scene::after {
+          right: 0;
+          background: linear-gradient(270deg, #f6f5f1 8%, rgba(246, 245, 241, 0));
+        }
+
+        .d-products .d-stilllife-item {
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 2;
+          width: clamp(150px, 10vw, 188px);
+          height: clamp(315px, 25vw, 390px);
+          opacity: 0;
+          transform: translate3d(-220px, 0, 0) scale(0.62);
+          transform-origin: 50% 84%;
+          transition: filter 240ms ease, opacity 180ms linear;
+          will-change: transform, opacity;
+        }
+
+        .d-products .d-product-trigger {
+          transform: scale(1);
+          transform-origin: 50% 58%;
+          transition: transform 260ms var(--ease);
+        }
+
+        .d-products .d-product-trigger:hover,
+        .d-products .d-product-trigger:focus-visible {
+          transform: scale(1.045);
+        }
+
+        .d-products .d-product-object {
+          bottom: 56px;
+          width: calc(var(--product-w) * 1.48);
+        }
+
+        .d-products .d-acrylic-plinth {
+          right: 5%;
+          bottom: 39px;
+          left: 5%;
+          width: 90%;
+          height: 22px;
+        }
+
+        .d-products .d-product-trigger:hover .d-product-img,
+        .d-products .d-product-trigger:focus-visible .d-product-img,
+        .d-products .d-stilllife-item.is-active .d-product-img {
+          transform: scale(1.025);
+        }
+
+        .d-products .d-product-label,
+        .d-products .d-stilllife-item:nth-child(6) .d-product-label {
+          right: auto;
+          bottom: 3px;
+          left: 50%;
+          padding: 6px 8px 5px;
+          background: rgba(250, 250, 246, 0.92);
+          font-size: 8px;
+          opacity: 0;
+          transform: translate3d(-50%, 7px, 0);
+        }
+
+        .d-products .d-stilllife-item.is-river-focus .d-product-label,
+        .d-products .d-product-trigger:hover .d-product-label,
+        .d-products .d-product-trigger:focus-visible .d-product-label,
+        .d-products .d-stilllife-item.is-active .d-product-label,
+        .d-products .d-stilllife-item:nth-child(6).is-river-focus .d-product-label,
+        .d-products .d-stilllife-item:nth-child(6) .d-product-trigger:hover .d-product-label,
+        .d-products .d-stilllife-item:nth-child(6) .d-product-trigger:focus-visible .d-product-label {
+          opacity: 1;
+          transform: translate3d(-50%, 0, 0);
+        }
+
+        .d-products .d-stilllife-scene.has-active-product .d-stilllife-item:not(.is-active) {
+          filter: none;
+          opacity: var(--river-opacity, 0.35);
+        }
+
+        .d-products .d-product-evidence {
+          position: fixed;
+          inset: 0;
+          z-index: 80;
+          display: grid;
+          width: 100vw;
+          height: 100dvh;
+          grid-template-columns: minmax(0, 0.94fr) minmax(430px, 1.06fr);
+          grid-template-rows: auto minmax(0, 1fr) auto;
+          gap: 0 clamp(44px, 5vw, 92px);
+          padding: clamp(42px, 5vw, 84px);
+          border: 0;
+          background: rgba(247, 247, 243, 0.985);
+          box-shadow: none;
+          opacity: 0;
+          overflow: hidden;
+          pointer-events: none;
+          transform: translate3d(0, 22px, 0);
+          transition: opacity 220ms ease, transform 460ms var(--ease), visibility 220ms;
+          visibility: hidden;
+        }
+
+        .d-products .d-product-evidence.is-open {
+          opacity: 1;
+          pointer-events: auto;
+          transform: translate3d(0, 0, 0);
+          visibility: visible;
+        }
+
+        .d-products .d-product-evidence__header {
+          grid-column: 2;
+          grid-row: 1;
+          gap: 30px;
+          padding: 2px 0 clamp(24px, 3vh, 42px);
+          border-bottom: 1px solid rgba(17, 17, 15, 0.15);
+        }
+
+        .d-products .d-product-evidence__eyebrow {
+          color: #7fa800;
+          font-size: 10px;
+          letter-spacing: 0.16em;
+        }
+
+        .d-products .d-product-evidence__title {
+          margin-top: 14px;
+          font-size: clamp(42px, 4.2vw, 76px);
+          font-weight: 390;
+          letter-spacing: -0.055em;
+          line-height: 0.94;
+        }
+
+        .d-products .d-product-evidence__volume {
+          margin-left: 12px;
+          font-size: 11px;
+          vertical-align: 1.15em;
+        }
+
+        .d-products .d-product-evidence__close {
+          width: 44px;
+          height: 44px;
+          flex: 0 0 44px;
+          font-size: 22px;
+        }
+
+        .d-products .d-product-evidence__body {
+          display: contents;
+        }
+
+        .d-products .d-product-evidence__poster {
+          grid-column: 1;
+          grid-row: 1 / 4;
+          min-height: 0;
+          margin: 0;
+          overflow: hidden;
+          border: 0;
+          background: #ecece5;
+          transform: none;
+        }
+
+        .d-products .d-product-evidence__poster img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          object-position: center;
+          background: #f1f1eb;
+        }
+
+        .d-products .d-product-evidence__notes {
+          grid-column: 2;
+          grid-row: 2;
+          align-content: center;
+          gap: 0;
+          padding: clamp(24px, 4vh, 64px) 0;
+        }
+
+        .d-products .d-product-evidence .d-evidence-note {
+          min-height: 0;
+          padding: clamp(22px, 3vh, 36px) 0;
+          border: 0;
+          border-bottom: 1px solid rgba(17, 17, 15, 0.15);
+          background: transparent;
+          transform: translate3d(0, 16px, 0);
+        }
+
+        .d-products .d-product-evidence .d-evidence-note:first-child {
+          border-top: 1px solid rgba(17, 17, 15, 0.15);
+        }
+
+        .d-products .d-product-evidence.is-open .d-evidence-note {
+          transform: translate3d(0, 0, 0);
+        }
+
+        .d-products .d-product-evidence .d-evidence-note__label {
+          margin-bottom: 12px;
+          color: #7fa800;
+          font-size: 11px;
+          letter-spacing: 0.16em;
+        }
+
+        .d-products .d-product-evidence .d-evidence-note__text {
+          max-width: 58ch;
+          color: rgba(17, 17, 15, 0.72);
+          font-size: clamp(15px, 1.2vw, 20px);
+          line-height: 1.55;
+          text-wrap: pretty;
+        }
+
+        .d-products .d-product-evidence__nav {
+          grid-column: 2;
+          grid-row: 3;
+          display: flex;
+          justify-content: space-between;
+          padding-top: clamp(20px, 2.5vh, 34px);
+          border-top: 1px solid rgba(17, 17, 15, 0.15);
+        }
+
+        .d-products .d-product-evidence__nav button {
+          padding: 9px 0;
+          border: 0;
+          background: transparent;
+          color: #171714;
+          cursor: pointer;
+          font: 560 11px/1 var(--d-font);
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          transition: color 200ms ease, transform 240ms var(--ease);
+        }
+
+        .d-products .d-product-evidence__nav button:hover,
+        .d-products .d-product-evidence__nav button:focus-visible {
+          color: #7fa800;
+          outline: none;
+          transform: translateX(var(--nav-shift, 0));
+        }
+
+        .d-products .d-product-evidence__nav button:first-child { --nav-shift: -4px; }
+        .d-products .d-product-evidence__nav button:last-child { --nav-shift: 4px; }
 
         .d-experience {
           padding: clamp(110px, 9vw, 156px) clamp(28px, 4vw, 72px) clamp(138px, 11vw, 190px);
@@ -4816,10 +5062,6 @@
           opacity: 0.34;
         }
 
-        .d-product-evidence-line {
-          display: none;
-        }
-
         .d-product-evidence {
           position: fixed;
           top: auto;
@@ -4975,6 +5217,10 @@
           color: rgba(17, 17, 15, 0.7);
           font-size: 11px;
           line-height: 1.48;
+        }
+
+        .d-product-evidence__nav {
+          display: none;
         }
 
         .d-experience {
@@ -5400,64 +5646,64 @@
               </div>
             </header>
 
-            <div class="d-stilllife-scene" role="list" aria-label="Selected product work arranged as an interactive still life" data-product-scene>
-              <article class="d-stilllife-item" role="listitem" data-product-item data-product-index="01" data-product-name="Classic Milk Tea" data-product-volume="360 ML" data-product-story="milk-tea">
+            <div class="d-stilllife-scene" role="group" aria-label="Selected product work moving from left to right in a continuous product river" data-product-scene>
+              <article class="d-stilllife-item" data-product-item data-product-index="01" data-product-name="Classic Milk Tea" data-product-volume="360 ML" data-product-story="milk-tea">
                 <button class="d-product-trigger" type="button" aria-expanded="false" aria-controls="product-evidence" aria-label="Open product notes for Classic Milk Tea, 360 millilitres">
                   <span class="d-product-object"><img class="d-product-img" src="assets/works/processed/milk-tea-classic-360.png" alt="Classic milk tea bottle" width="330" height="725" loading="lazy" decoding="async" /></span>
                   <span class="d-acrylic-plinth" aria-hidden="true"><span class="d-acrylic-plinth__top"></span><span class="d-acrylic-plinth__front"></span><span class="d-acrylic-plinth__side"></span></span>
                   <span class="d-product-label" aria-hidden="true">01 / Classic Milk Tea / 360 ML</span>
                 </button>
               </article>
-              <article class="d-stilllife-item" role="listitem" data-product-item data-product-index="02" data-product-name="MAXX" data-product-volume="480 ML" data-product-story="maxx">
+              <article class="d-stilllife-item" data-product-item data-product-index="02" data-product-name="MAXX" data-product-volume="480 ML" data-product-story="maxx">
                 <button class="d-product-trigger" type="button" aria-expanded="false" aria-controls="product-evidence" aria-label="Open product notes for MAXX, 480 millilitres">
                   <span class="d-product-object"><img class="d-product-img" src="assets/works/processed/maxx-480.png" alt="MAXX carbonated drink bottle" width="266" height="745" loading="lazy" decoding="async" /></span>
                   <span class="d-acrylic-plinth" aria-hidden="true"><span class="d-acrylic-plinth__top"></span><span class="d-acrylic-plinth__front"></span><span class="d-acrylic-plinth__side"></span></span>
                   <span class="d-product-label" aria-hidden="true">02 / MAXX / 480 ML</span>
                 </button>
               </article>
-              <article class="d-stilllife-item" role="listitem" data-product-item data-product-index="03" data-product-name="Red Bean Milk Tea" data-product-volume="450 ML" data-product-story="milk-tea">
+              <article class="d-stilllife-item" data-product-item data-product-index="03" data-product-name="Red Bean Milk Tea" data-product-volume="450 ML" data-product-story="milk-tea">
                 <button class="d-product-trigger" type="button" aria-expanded="false" aria-controls="product-evidence" aria-label="Open product notes for Red Bean Milk Tea, 450 millilitres">
                   <span class="d-product-object"><img class="d-product-img" src="assets/works/processed/milk-tea-bean-450.png" alt="Milk tea with bean paste bottle, front view" width="433" height="958" loading="lazy" decoding="async" /></span>
                   <span class="d-acrylic-plinth" aria-hidden="true"><span class="d-acrylic-plinth__top"></span><span class="d-acrylic-plinth__front"></span><span class="d-acrylic-plinth__side"></span></span>
                   <span class="d-product-label" aria-hidden="true">03 / Red Bean Milk Tea / 450 ML</span>
                 </button>
               </article>
-              <article class="d-stilllife-item" role="listitem" data-product-item data-product-index="04" data-product-name="Rancha Jasmine" data-product-volume="500 ML" data-product-story="rancha">
+              <article class="d-stilllife-item" data-product-item data-product-index="04" data-product-name="Rancha Jasmine" data-product-volume="500 ML" data-product-story="rancha">
                 <button class="d-product-trigger" type="button" aria-expanded="false" aria-controls="product-evidence" aria-label="Open product notes for Rancha Jasmine, 500 millilitres">
                   <span class="d-product-object"><img class="d-product-img" src="assets/works/processed/rancha-jasmine-500.png" alt="Jasmine Rancha tea bottle" width="245" height="733" loading="lazy" decoding="async" /></span>
                   <span class="d-acrylic-plinth" aria-hidden="true"><span class="d-acrylic-plinth__top"></span><span class="d-acrylic-plinth__front"></span><span class="d-acrylic-plinth__side"></span></span>
                   <span class="d-product-label" aria-hidden="true">04 / Rancha Jasmine / 500 ML</span>
                 </button>
               </article>
-              <article class="d-stilllife-item" role="listitem" data-product-item data-product-index="05" data-product-name="Manfen Orange" data-product-volume="280 ML" data-product-story="orange">
+              <article class="d-stilllife-item" data-product-item data-product-index="05" data-product-name="Manfen Orange" data-product-volume="280 ML" data-product-story="orange">
                 <button class="d-product-trigger" type="button" aria-expanded="false" aria-controls="product-evidence" aria-label="Open product notes for Manfen Orange, 280 millilitres">
                   <span class="d-product-object"><img class="d-product-img" src="assets/works/processed/orange-280.png" alt="Orange beverage bottle" width="412" height="1209" loading="lazy" decoding="async" /></span>
                   <span class="d-acrylic-plinth" aria-hidden="true"><span class="d-acrylic-plinth__top"></span><span class="d-acrylic-plinth__front"></span><span class="d-acrylic-plinth__side"></span></span>
                   <span class="d-product-label" aria-hidden="true">05 / Manfen Orange / 280 ML</span>
                 </button>
               </article>
-              <article class="d-stilllife-item" role="listitem" data-product-item data-product-index="06" data-product-name="Strawberry Milk Tea" data-product-volume="360 ML" data-product-story="milk-tea">
+              <article class="d-stilllife-item" data-product-item data-product-index="06" data-product-name="Strawberry Milk Tea" data-product-volume="360 ML" data-product-story="milk-tea">
                 <button class="d-product-trigger" type="button" aria-expanded="false" aria-controls="product-evidence" aria-label="Open product notes for Strawberry Milk Tea, 360 millilitres">
                   <span class="d-product-object"><img class="d-product-img" src="assets/works/processed/milk-tea-strawberry-360.png" alt="Strawberry milk tea bottle" width="330" height="725" loading="lazy" decoding="async" /></span>
                   <span class="d-acrylic-plinth" aria-hidden="true"><span class="d-acrylic-plinth__top"></span><span class="d-acrylic-plinth__front"></span><span class="d-acrylic-plinth__side"></span></span>
                   <span class="d-product-label" aria-hidden="true">06 / Strawberry Milk Tea / 360 ML</span>
                 </button>
               </article>
-              <article class="d-stilllife-item" role="listitem" data-product-item data-product-index="07" data-product-name="Pure Water" data-product-volume="550 ML" data-product-story="water">
+              <article class="d-stilllife-item" data-product-item data-product-index="07" data-product-name="Pure Water" data-product-volume="550 ML" data-product-story="water">
                 <button class="d-product-trigger" type="button" aria-expanded="false" aria-controls="product-evidence" aria-label="Open product notes for Pure Water, approximately 550 millilitres">
                   <span class="d-product-object"><img class="d-product-img" src="assets/works/processed/pure-water.png" alt="Pure water bottle, front view" width="415" height="1279" loading="lazy" decoding="async" /></span>
                   <span class="d-acrylic-plinth" aria-hidden="true"><span class="d-acrylic-plinth__top"></span><span class="d-acrylic-plinth__front"></span><span class="d-acrylic-plinth__side"></span></span>
                   <span class="d-product-label" aria-hidden="true">07 / Pure Water / 550 ML</span>
                 </button>
               </article>
-              <article class="d-stilllife-item" role="listitem" data-product-item data-product-index="08" data-product-name="Rancha Oolong" data-product-volume="500 ML" data-product-story="rancha">
+              <article class="d-stilllife-item" data-product-item data-product-index="08" data-product-name="Rancha Oolong" data-product-volume="500 ML" data-product-story="rancha">
                 <button class="d-product-trigger" type="button" aria-expanded="false" aria-controls="product-evidence" aria-label="Open product notes for Rancha Oolong, 500 millilitres">
                   <span class="d-product-object"><img class="d-product-img" src="assets/works/processed/rancha-oolong-500.png" alt="Roasted oolong Rancha tea bottle" width="240" height="716" loading="lazy" decoding="async" /></span>
                   <span class="d-acrylic-plinth" aria-hidden="true"><span class="d-acrylic-plinth__top"></span><span class="d-acrylic-plinth__front"></span><span class="d-acrylic-plinth__side"></span></span>
                   <span class="d-product-label" aria-hidden="true">08 / Rancha Oolong / 500 ML</span>
                 </button>
               </article>
-              <article class="d-stilllife-item" role="listitem" data-product-item data-product-index="09" data-product-name="Jasmine Milk Green" data-product-volume="360 ML" data-product-story="milk-tea">
+              <article class="d-stilllife-item" data-product-item data-product-index="09" data-product-name="Jasmine Milk Green" data-product-volume="360 ML" data-product-story="milk-tea">
                 <button class="d-product-trigger" type="button" aria-expanded="false" aria-controls="product-evidence" aria-label="Open product notes for Jasmine Milk Green, 360 millilitres">
                   <span class="d-product-object"><img class="d-product-img" src="assets/works/processed/milk-tea-jasmine-360.png" alt="Jasmine milk green tea bottle" width="329" height="725" loading="lazy" decoding="async" /></span>
                   <span class="d-acrylic-plinth" aria-hidden="true"><span class="d-acrylic-plinth__top"></span><span class="d-acrylic-plinth__front"></span><span class="d-acrylic-plinth__side"></span></span>
@@ -5465,14 +5711,13 @@
                 </button>
               </article>
 
-              <svg class="d-product-evidence-line" aria-hidden="true" data-product-evidence-line><path data-product-evidence-path></path></svg>
-              <aside class="d-product-evidence" id="product-evidence" aria-hidden="true" aria-live="polite" data-product-evidence>
+              <aside class="d-product-evidence" id="product-evidence" role="dialog" aria-modal="true" aria-labelledby="product-evidence-title" aria-hidden="true" data-product-evidence>
                 <header class="d-product-evidence__header">
                   <div>
-                    <p class="d-product-evidence__eyebrow">Product story · click another object to switch</p>
-                    <h3 class="d-product-evidence__title"><span data-evidence-index>01</span> · <span data-evidence-name>Classic Milk Tea</span><span class="d-product-evidence__volume" data-evidence-volume>360 ML</span></h3>
+                    <p class="d-product-evidence__eyebrow">Selected product case / <span data-evidence-count>01 / 09</span></p>
+                    <h3 class="d-product-evidence__title" id="product-evidence-title"><span data-evidence-index>01</span> · <span data-evidence-name>Classic Milk Tea</span><span class="d-product-evidence__volume" data-evidence-volume>360 ML</span></h3>
                   </div>
-                  <button class="d-product-evidence__close" type="button" aria-label="Close product notes" data-product-evidence-close>×</button>
+                  <button class="d-product-evidence__close" type="button" aria-label="Close product case" data-product-evidence-close>×</button>
                 </header>
                 <div class="d-product-evidence__body">
                   <figure class="d-product-evidence__poster">
@@ -5480,11 +5725,14 @@
                     <div class="d-product-evidence__poster-placeholder" data-evidence-placeholder hidden>Campaign visual placeholder</div>
                   </figure>
                   <div class="d-product-evidence__notes">
-                    <article class="d-evidence-note"><p class="d-evidence-note__label">Consumer signal</p><p class="d-evidence-note__text" data-evidence-signal></p></article>
-                    <article class="d-evidence-note"><p class="d-evidence-note__label">Product move</p><p class="d-evidence-note__text" data-evidence-move></p></article>
-                    <article class="d-evidence-note"><p class="d-evidence-note__label">Market proof</p><p class="d-evidence-note__text" data-evidence-proof></p></article>
+                    <article class="d-evidence-note"><p class="d-evidence-note__label">Strategy</p><p class="d-evidence-note__text" data-evidence-strategy></p></article>
+                    <article class="d-evidence-note"><p class="d-evidence-note__label">Outcome</p><p class="d-evidence-note__text" data-evidence-outcome></p></article>
                   </div>
                 </div>
+                <nav class="d-product-evidence__nav" aria-label="Browse product cases">
+                  <button type="button" data-product-evidence-prev>← Previous</button>
+                  <button type="button" data-product-evidence-next>Next →</button>
+                </nav>
               </aside>
             </div>
           </div>
@@ -6004,38 +6252,40 @@
       const productScene = document.querySelector("[data-product-scene]");
       const productItems = Array.from(document.querySelectorAll("[data-product-item]"));
       const productEvidence = document.querySelector("[data-product-evidence]");
-      const productEvidencePath = document.querySelector("[data-product-evidence-path]");
       const productEvidenceImage = document.querySelector("[data-evidence-image]");
       const productEvidencePlaceholder = document.querySelector("[data-evidence-placeholder]");
       const productEvidenceClose = document.querySelector("[data-product-evidence-close]");
+      const productEvidencePrevious = document.querySelector("[data-product-evidence-prev]");
+      const productEvidenceNext = document.querySelector("[data-product-evidence-next]");
       let capabilityMetrics = [];
       let activeProductItem = null;
+      let productRiverFrame = 0;
+      let productRiverOffset = 0;
+      let productRiverLastTime = 0;
+      let productRiverIsVisible = true;
+      let productRiverIsPaused = false;
+      let productRiverResumeTimer = 0;
 
       const productStories = {
         "milk-tea": {
-          signal: "Placeholder — an everyday indulgence needed to feel lighter, clearer and easier to navigate across flavors.",
-          move: "Draft — built a coherent milk-tea portfolio through pack architecture, flavor roles and launch sequencing.",
-          proof: "Replace with the verified sales, conversion or channel result for this series.",
+          strategy: "Build a recognizable milk-tea family around a consistent low-sugar proposition, then give each flavor a distinct role through color, naming and pack hierarchy.",
+          outcome: "Created a scalable portfolio system spanning classic, red-bean, strawberry and jasmine variants, ready to travel across shelf, campaign and e-commerce touchpoints.",
         },
         maxx: {
-          signal: "Placeholder — younger consumers wanted a sharper energy cue without the visual heaviness of the category.",
-          move: "Draft — translated that tension into a direct proposition, disruptive pack language and focused launch rhythm.",
-          proof: "Replace with verified launch GMV, repeat or channel-ranking evidence.",
+          strategy: "Translate a sharper refreshment need into a direct proposition, disruptive black-and-acid-green packaging and a focused launch rhythm for younger consumers.",
+          outcome: "Established a distinctive carbonated-drink asset system that stays recognizable across product, campaign and channel execution.",
         },
         rancha: {
-          signal: "Placeholder — tea drinkers were looking for a cleaner, more grown-up refreshment signal.",
-          move: "Draft — clarified portfolio roles, flavor ladder and a more distinctive shelf expression.",
-          proof: "Replace with the verified portfolio, distribution or sell-through result.",
+          strategy: "Make the tea cue dominant, clarify the flavor ladder and position the range as a cleaner, more grown-up refreshment choice.",
+          outcome: "Turned multiple tea flavors into one coherent portfolio with clearer shelf navigation and repeatable launch language.",
         },
         orange: {
-          signal: "Placeholder — health reassurance needed to become immediate and easy to read at shelf.",
-          move: "Draft — simplified the 100% juice proposition and shaped the pack and campaign hierarchy around one proof point.",
-          proof: "Replace with the verified e-commerce test or category-ranking result.",
+          strategy: "Reduce the proposition to one instantly legible proof point—100% fruit juice—and make it the organizing idea for pack and communication.",
+          outcome: "Aligned bottle, campaign poster and e-commerce expression around a single benefit that can be understood at a glance.",
         },
         water: {
-          signal: "Placeholder — add the consumer occasion or category tension that initiated this project.",
-          move: "Placeholder — add your role in proposition, pack, portfolio or route-to-market decisions.",
-          proof: "Add one public result when the project story is confirmed.",
+          strategy: "Frame hydration around purity, clarity and an uncomplicated everyday occasion, allowing the pack itself to carry the reassurance.",
+          outcome: "Created a restrained product story that stays consistent from bottle silhouette to retail and digital communication.",
         },
       };
 
@@ -6210,48 +6460,16 @@
         });
       });
 
-      function positionProductEvidence(item) {
-        if (!productScene || !productEvidence || !productEvidencePath || !item) return;
-        const sceneRect = productScene.getBoundingClientRect();
-        const itemRect = item.getBoundingClientRect();
-        const panelWidth = productEvidence.offsetWidth;
-        const panelHeight = productEvidence.offsetHeight;
-        const targetX = itemRect.left - sceneRect.left + itemRect.width / 2;
-        const targetY = itemRect.top - sceneRect.top + itemRect.height * 0.78;
-        const placeRight = targetX < sceneRect.width * 0.52;
-        const preferredGap = Math.max(44, sceneRect.width * 0.045);
-        let panelX = placeRight
-          ? targetX + itemRect.width / 2 + preferredGap
-          : targetX - panelWidth - itemRect.width / 2 - preferredGap;
-        let panelY = targetY - panelHeight * 0.42;
-        panelX = clamp(panelX, 18, sceneRect.width - panelWidth - 18);
-        panelY = clamp(panelY, 18, sceneRect.height - panelHeight - 18);
-
-        productEvidence.style.setProperty("--evidence-x", panelX.toFixed(2) + "px");
-        productEvidence.style.setProperty("--evidence-y", panelY.toFixed(2) + "px");
-
-        const endX = placeRight ? panelX : panelX + panelWidth;
-        const endY = clamp(targetY, panelY + 42, panelY + panelHeight - 42);
-        const direction = placeRight ? 1 : -1;
-        const curve = Math.max(36, Math.abs(endX - targetX) * 0.44);
-        productEvidencePath.setAttribute(
-          "d",
-          "M " + targetX.toFixed(2) + " " + targetY.toFixed(2) +
-          " C " + (targetX + curve * direction).toFixed(2) + " " + targetY.toFixed(2) +
-          ", " + (endX - curve * direction).toFixed(2) + " " + endY.toFixed(2) +
-          ", " + endX.toFixed(2) + " " + endY.toFixed(2),
-        );
-      }
-
       function setProductEvidenceContent(item) {
         if (!productEvidence || !productEvidenceImage || !productEvidencePlaceholder) return;
         const story = productStories[item.dataset.productStory] || productStories.water;
         productEvidence.querySelector("[data-evidence-index]").textContent = item.dataset.productIndex || "";
         productEvidence.querySelector("[data-evidence-name]").textContent = item.dataset.productName || "Product";
         productEvidence.querySelector("[data-evidence-volume]").textContent = item.dataset.productVolume || "";
-        productEvidence.querySelector("[data-evidence-signal]").textContent = story.signal;
-        productEvidence.querySelector("[data-evidence-move]").textContent = story.move;
-        productEvidence.querySelector("[data-evidence-proof]").textContent = story.proof;
+        productEvidence.querySelector("[data-evidence-count]").textContent =
+          (item.dataset.productIndex || "01") + " / " + String(productItems.length).padStart(2, "0");
+        productEvidence.querySelector("[data-evidence-strategy]").textContent = story.strategy;
+        productEvidence.querySelector("[data-evidence-outcome]").textContent = story.outcome;
 
         const poster = productPosters[item.dataset.productIndex] || "";
         if (poster) {
@@ -6278,18 +6496,13 @@
         productEvidence.classList.remove("is-open");
         productEvidence.setAttribute("aria-hidden", "true");
         document.body.classList.remove("is-product-evidence-open");
-        if (productEvidencePath) productEvidencePath.removeAttribute("d");
         activeProductItem = null;
+        queueProductRiverResume();
         if (restoreFocus) previousTrigger?.focus();
       }
 
       function openProductEvidence(item) {
         if (!productScene || !productEvidence || !item) return;
-        if (activeProductItem === item && productEvidence.classList.contains("is-open")) {
-          closeProductEvidence({ restoreFocus: true });
-          return;
-        }
-
         productItems.forEach(function (candidate) {
           const selected = candidate === item;
           candidate.classList.toggle("is-active", selected);
@@ -6301,9 +6514,17 @@
         productEvidence.classList.add("is-open");
         productEvidence.setAttribute("aria-hidden", "false");
         document.body.classList.add("is-product-evidence-open");
+        pauseProductRiver();
         window.requestAnimationFrame(function () {
-          positionProductEvidence(item);
+          productEvidenceClose?.focus();
         });
+      }
+
+      function showAdjacentProduct(direction) {
+        if (!activeProductItem || !productItems.length) return;
+        const currentIndex = productItems.indexOf(activeProductItem);
+        const nextIndex = (currentIndex + direction + productItems.length) % productItems.length;
+        openProductEvidence(productItems[nextIndex]);
       }
 
       productItems.forEach(function (item) {
@@ -6321,10 +6542,12 @@
         closeProductEvidence({ restoreFocus: true });
       });
 
-      productScene?.addEventListener("pointerdown", function (event) {
-        if (!activeProductItem) return;
-        if (event.target.closest("[data-product-item], [data-product-evidence]")) return;
-        closeProductEvidence();
+      productEvidencePrevious?.addEventListener("click", function () {
+        showAdjacentProduct(-1);
+      });
+
+      productEvidenceNext?.addEventListener("click", function () {
+        showAdjacentProduct(1);
       });
 
       document.addEventListener("keydown", function (event) {
@@ -6333,14 +6556,155 @@
           closeProductEvidence({ restoreFocus: true });
           return;
         }
-        if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
-        event.preventDefault();
-        const currentIndex = productItems.indexOf(activeProductItem);
-        const direction = event.key === "ArrowRight" ? 1 : -1;
-        const nextIndex = (currentIndex + direction + productItems.length) % productItems.length;
-        openProductEvidence(productItems[nextIndex]);
-        productItems[nextIndex].querySelector(".d-product-trigger")?.focus();
+        if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+          event.preventDefault();
+          showAdjacentProduct(event.key === "ArrowRight" ? 1 : -1);
+          return;
+        }
+        if (event.key !== "Tab" || !productEvidence) return;
+        const focusable = Array.from(
+          productEvidence.querySelectorAll("button:not([disabled]), [href], [tabindex]:not([tabindex='-1'])"),
+        ).filter(function (element) {
+          return !element.hasAttribute("hidden");
+        });
+        if (!focusable.length) return;
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
       });
+
+      function clearProductRiverStyles() {
+        productItems.forEach(function (item) {
+          item.style.removeProperty("transform");
+          item.style.removeProperty("opacity");
+          item.style.removeProperty("z-index");
+          item.style.removeProperty("--river-opacity");
+          item.classList.remove("is-river-focus");
+        });
+      }
+
+      function renderProductRiver() {
+        if (!productScene || !productItems.length || !desktopMode.matches) return;
+        const width = productScene.clientWidth;
+        const height = productScene.clientHeight;
+        if (!width || !height) return;
+
+        const edgePadding = clamp(width * 0.085, 92, 150);
+        const cycleWidth = width + edgePadding * 2;
+        const spacing = cycleWidth / productItems.length;
+        const centerX = width / 2;
+        const railY = height * 0.61;
+        productRiverOffset = ((productRiverOffset % cycleWidth) + cycleWidth) % cycleWidth;
+
+        const layouts = productItems.map(function (item, index) {
+          const rawX = (index * spacing + productRiverOffset) % cycleWidth;
+          const x = rawX - edgePadding;
+          const distance = clamp(Math.abs(x - centerX) / (width * 0.55), 0, 1);
+          const emphasis = smoothstep(1 - distance);
+          const scale = 0.62 + emphasis * 0.78;
+          const opacity = 0.2 + emphasis * 0.8;
+          const itemWidth = item.offsetWidth;
+          const itemHeight = item.offsetHeight;
+          const translateX = x - itemWidth / 2;
+          const translateY = railY - itemHeight * 0.84;
+
+          return { item, emphasis, opacity, scale, translateX, translateY };
+        });
+
+        const focusedLayout = layouts.reduce(function (closest, layout) {
+          return !closest || layout.emphasis > closest.emphasis ? layout : closest;
+        }, null);
+
+        layouts.forEach(function (layout) {
+          const { item, emphasis, opacity, scale, translateX, translateY } = layout;
+          item.style.transform =
+            "translate3d(" + translateX.toFixed(2) + "px, " + translateY.toFixed(2) + "px, 0) scale(" + scale.toFixed(4) + ")";
+          item.style.opacity = opacity.toFixed(3);
+          item.style.zIndex = String(Math.round(2 + emphasis * 8));
+          item.style.setProperty("--river-opacity", opacity.toFixed(3));
+          item.classList.toggle("is-river-focus", layout === focusedLayout && emphasis > 0.74);
+        });
+      }
+
+      function runProductRiver(time) {
+        productRiverFrame = 0;
+        if (!desktopMode.matches || !productScene) {
+          clearProductRiverStyles();
+          return;
+        }
+
+        if (!productRiverIsVisible || reducedMotion.matches || document.hidden) {
+          productRiverLastTime = 0;
+          renderProductRiver();
+          return;
+        }
+
+        if (!productRiverLastTime) productRiverLastTime = time;
+        const elapsed = Math.min(time - productRiverLastTime, 64);
+        productRiverLastTime = time;
+        const mayMove =
+          !productRiverIsPaused &&
+          !activeProductItem &&
+          !document.hidden;
+        if (mayMove) productRiverOffset += elapsed * 0.02;
+        renderProductRiver();
+        productRiverFrame = window.requestAnimationFrame(runProductRiver);
+      }
+
+      function startProductRiver() {
+        window.cancelAnimationFrame(productRiverFrame);
+        productRiverFrame = 0;
+        productRiverLastTime = 0;
+        if (!desktopMode.matches) {
+          clearProductRiverStyles();
+          return;
+        }
+        renderProductRiver();
+        if (!productRiverIsVisible || reducedMotion.matches || document.hidden) return;
+        productRiverFrame = window.requestAnimationFrame(runProductRiver);
+      }
+
+      function pauseProductRiver() {
+        window.clearTimeout(productRiverResumeTimer);
+        productRiverIsPaused = true;
+      }
+
+      function queueProductRiverResume() {
+        window.clearTimeout(productRiverResumeTimer);
+        productRiverResumeTimer = window.setTimeout(function () {
+          if (!activeProductItem) productRiverIsPaused = false;
+        }, 350);
+      }
+
+      productItems.forEach(function (item) {
+        const trigger = item.querySelector(".d-product-trigger");
+        trigger?.addEventListener("pointerenter", pauseProductRiver);
+        trigger?.addEventListener("pointerleave", queueProductRiverResume);
+        trigger?.addEventListener("focus", pauseProductRiver);
+        trigger?.addEventListener("blur", queueProductRiverResume);
+      });
+
+      if (productScene && "IntersectionObserver" in window) {
+        const productRiverObserver = new IntersectionObserver(
+          function (entries) {
+            productRiverIsVisible = entries[0]?.isIntersecting === true;
+            if (productRiverIsVisible) startProductRiver();
+            else {
+              window.cancelAnimationFrame(productRiverFrame);
+              productRiverFrame = 0;
+              productRiverLastTime = 0;
+            }
+          },
+          { rootMargin: "180px 0px", threshold: 0.01 },
+        );
+        productRiverObserver.observe(productScene);
+      }
 
       function clamp(value, minimum, maximum) {
         return Math.min(Math.max(value, minimum), maximum);
@@ -6606,8 +6970,13 @@
         layoutFrame = window.requestAnimationFrame(function () {
           measureCapabilities();
           updateScrollUI();
-          if (activeProductItem) positionProductEvidence(activeProductItem);
+          renderProductRiver();
         });
+      }
+
+      function refreshProductRiverMode() {
+        startProductRiver();
+        refreshLayout();
       }
 
       function listenForMediaChange(query, listener) {
@@ -6619,8 +6988,17 @@
         closeMenu();
         refreshLayout();
       });
-      listenForMediaChange(desktopMode, refreshLayout);
-      listenForMediaChange(reducedMotion, refreshLayout);
+      listenForMediaChange(desktopMode, refreshProductRiverMode);
+      listenForMediaChange(reducedMotion, refreshProductRiverMode);
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) {
+          window.cancelAnimationFrame(productRiverFrame);
+          productRiverFrame = 0;
+          productRiverLastTime = 0;
+        } else {
+          startProductRiver();
+        }
+      });
       capabilityStickers.forEach(function (sticker) {
         const image = sticker.querySelector("img");
         if (image && !image.complete) image.addEventListener("load", refreshLayout, { once: true });
@@ -6630,6 +7008,7 @@
         element.textContent = String(new Date().getFullYear());
       });
       initLimeCursorTrail();
+      startProductRiver();
       refreshLayout();
       updateScrollUI();
     </script>
