@@ -7410,6 +7410,8 @@
       let productRiverIsVisible = true;
       let productRiverIsPaused = false;
       let productRiverResumeTimer = 0;
+      let productEvidenceImageRequest = 0;
+      const productPosterCache = new Map();
 
       const productStories = {
         "milk-tea": {
@@ -7450,6 +7452,51 @@
         "09": "assets/product-stories/product-milk-tea-poster-v2.jpg",
         "10": "assets/product-stories/product-10-manfen-grapefruit-poster.jpg",
       };
+
+      function getProductPoster(item) {
+        return productPosters[item?.dataset.productIndex] || "";
+      }
+
+      function preloadProductPoster(item) {
+        const poster = getProductPoster(item);
+        if (!poster) return Promise.resolve({ poster: "", loaded: false });
+
+        if (!productPosterCache.has(poster)) {
+          const request = new Promise(function (resolve) {
+            const preloader = new Image();
+            let settled = false;
+
+            async function finish(loaded) {
+              if (settled) return;
+              settled = true;
+              if (loaded && typeof preloader.decode === "function") {
+                try {
+                  await preloader.decode();
+                } catch {
+                  // A completed load can still reject decode in older browsers.
+                }
+              }
+              resolve({ poster, loaded });
+            }
+
+            preloader.decoding = "async";
+            preloader.addEventListener("load", function () {
+              finish(true);
+            }, { once: true });
+            preloader.addEventListener("error", function () {
+              finish(false);
+            }, { once: true });
+            preloader.src = poster;
+          }).then(function (result) {
+            if (!result.loaded) productPosterCache.delete(poster);
+            return result;
+          });
+
+          productPosterCache.set(poster, request);
+        }
+
+        return productPosterCache.get(poster);
+      }
 
       let vendingMachine = null;
       let vendingMotionLayer = null;
@@ -7534,6 +7581,7 @@
 
       async function dispenseProduct(item) {
         if (!item || vendingIsDispensing) return;
+        preloadProductPoster(item);
         if (!desktopMode.matches || !productScene?.classList.contains("is-vending-ready") || reducedMotion.matches) {
           openProductEvidence(item, { unfold: true });
           return;
@@ -7837,32 +7885,56 @@
         });
       });
 
-      function setProductEvidenceContent(item) {
+      async function setProductEvidenceContent(item) {
         if (!productEvidence || !productEvidenceImage || !productEvidencePlaceholder) return;
         const story = productStories[item.dataset.productStory] || productStories.water;
+        const request = ++productEvidenceImageRequest;
+        const productName = item.dataset.productName || "the selected product";
         productEvidence.querySelector("[data-evidence-index]").textContent = item.dataset.productIndex || "";
-        productEvidence.querySelector("[data-evidence-name]").textContent = item.dataset.productName || "Product";
+        productEvidence.querySelector("[data-evidence-name]").textContent = productName;
         productEvidence.querySelector("[data-evidence-volume]").textContent = item.dataset.productVolume || "";
         productEvidence.querySelector("[data-evidence-count]").textContent =
           (item.dataset.productIndex || "01") + " / " + String(productItems.length).padStart(2, "0");
         productEvidence.querySelector("[data-evidence-strategy]").textContent = story.strategy;
         productEvidence.querySelector("[data-evidence-outcome]").textContent = story.outcome;
 
-        const poster = productPosters[item.dataset.productIndex] || "";
-        if (poster) {
-          productEvidenceImage.src = poster;
-          productEvidenceImage.alt = "Campaign poster for " + (item.dataset.productName || "the selected product");
-          productEvidenceImage.hidden = false;
-          productEvidencePlaceholder.hidden = true;
-        } else {
-          productEvidenceImage.removeAttribute("src");
-          productEvidenceImage.hidden = true;
-          productEvidencePlaceholder.hidden = false;
+        productEvidenceImage.hidden = true;
+        productEvidenceImage.removeAttribute("src");
+        productEvidenceImage.alt = "Campaign poster for " + productName;
+        productEvidencePlaceholder.textContent = "Loading campaign visual";
+        productEvidencePlaceholder.hidden = false;
+
+        const result = await preloadProductPoster(item);
+        if (request !== productEvidenceImageRequest) return;
+
+        if (!result.loaded) {
+          productEvidencePlaceholder.textContent = "Campaign visual unavailable";
+          return;
         }
+
+        productEvidenceImage.src = result.poster;
+        if (typeof productEvidenceImage.decode === "function") {
+          try {
+            await productEvidenceImage.decode();
+          } catch {
+            // The load fallback below will keep the placeholder if decoding fails.
+          }
+        }
+
+        if (request !== productEvidenceImageRequest) return;
+        if (!productEvidenceImage.complete || !productEvidenceImage.naturalWidth) {
+          productEvidenceImage.removeAttribute("src");
+          productEvidencePlaceholder.textContent = "Campaign visual unavailable";
+          return;
+        }
+
+        productEvidenceImage.hidden = false;
+        productEvidencePlaceholder.hidden = true;
       }
 
       function closeProductEvidence(options) {
         if (!productScene || !productEvidence) return;
+        productEvidenceImageRequest += 1;
         const restoreFocus = options?.restoreFocus === true;
         const previousTrigger = activeProductItem?.querySelector(".d-product-trigger");
         productItems.forEach(function (item) {
@@ -7887,7 +7959,7 @@
           candidate.querySelector(".d-product-trigger")?.setAttribute("aria-expanded", String(selected));
         });
         activeProductItem = item;
-        setProductEvidenceContent(item);
+        void setProductEvidenceContent(item);
         productScene.classList.add("has-active-product");
         productEvidence.classList.remove("is-unfolding");
         if (options?.unfold === true && !reducedMotion.matches) {
@@ -7916,18 +7988,20 @@
       }
 
       productItems.forEach(function (item) {
-        item.querySelector(".d-product-trigger")?.addEventListener("click", function () {
+        const trigger = item.querySelector(".d-product-trigger");
+        trigger?.addEventListener("pointerenter", function () {
+          preloadProductPoster(item);
+        });
+        trigger?.addEventListener("focus", function () {
+          preloadProductPoster(item);
+        });
+        trigger?.addEventListener("click", function () {
           if (productScene?.classList.contains("is-vending-ready") && desktopMode.matches) {
             dispenseProduct(item);
           } else {
             openProductEvidence(item);
           }
         });
-      });
-
-      productEvidenceImage?.addEventListener("error", function () {
-        productEvidenceImage.hidden = true;
-        if (productEvidencePlaceholder) productEvidencePlaceholder.hidden = false;
       });
 
       productEvidenceClose?.addEventListener("click", function () {
