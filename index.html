@@ -10,6 +10,19 @@
     />
     <title>Jiaying Chen — Innovation, Brand &amp; Growth Strategist</title>
     <script>document.documentElement.classList.add("js");</script>
+    <link rel="preload" as="image" type="image/webp" href="assets/optimized/previews/milk-tea-classic-360.webp" fetchpriority="high" />
+    <link rel="preload" as="image" type="image/webp" href="assets/optimized/previews/maxx-480.webp" fetchpriority="high" />
+    <link rel="preload" as="image" type="image/webp" href="assets/optimized/previews/milk-tea-bean-450.webp" fetchpriority="high" />
+    <link rel="preload" as="image" type="image/webp" href="assets/optimized/previews/rancha-jasmine-500.webp" fetchpriority="high" />
+    <link rel="preload" as="image" type="image/webp" href="assets/optimized/previews/orange-280.webp" fetchpriority="high" />
+    <link rel="preload" as="image" type="image/webp" href="assets/optimized/previews/milk-tea-strawberry-360.webp" fetchpriority="high" />
+    <link rel="preload" as="image" type="image/webp" href="assets/optimized/previews/pure-water.webp" fetchpriority="high" />
+    <link rel="preload" as="image" type="image/webp" href="assets/optimized/previews/rancha-oolong-500.webp" fetchpriority="high" />
+    <link rel="preload" as="image" type="image/webp" href="assets/optimized/previews/milk-tea-jasmine-360.webp" fetchpriority="high" />
+    <link rel="preload" as="image" type="image/webp" href="assets/optimized/previews/manfen-grapefruit-sparkling-juice-380ml.webp" fetchpriority="high" />
+    <link rel="preload" as="image" href="assets/handwriting/sporty.png" />
+    <link rel="preload" as="image" href="assets/handwriting/tender.png" />
+    <link rel="preload" as="image" href="assets/handwriting/curious.png" />
     <style>
       :root {
         color-scheme: light;
@@ -2748,6 +2761,71 @@
 
       .lime-cursor-trail,
       .lime-cursor-dot {
+        display: none;
+      }
+
+      @keyframes product-skeleton-pulse {
+        0%,
+        100% {
+          opacity: 0.34;
+        }
+        50% {
+          opacity: 0.62;
+        }
+      }
+
+      .d-product-object::before,
+      .d-product-object::after {
+        position: absolute;
+        z-index: 0;
+        border: 1px solid rgba(250, 250, 247, 0.28);
+        background:
+          linear-gradient(105deg, rgba(245, 245, 239, 0.12), rgba(255, 255, 252, 0.38), rgba(245, 245, 239, 0.12));
+        box-shadow: inset 0 0 14px rgba(255, 255, 252, 0.12);
+        content: "";
+        opacity: 0.46;
+        pointer-events: none;
+        transition: opacity 220ms ease;
+        animation: product-skeleton-pulse 1.4s ease-in-out infinite;
+      }
+
+      .d-product-object::before {
+        top: 2%;
+        left: 35%;
+        width: 30%;
+        height: 14%;
+        border-radius: 5px 5px 2px 2px;
+      }
+
+      .d-product-object::after {
+        inset: 12% 13% 0;
+        border-radius: 18% 18% 14% 14% / 8% 8% 5% 5%;
+      }
+
+      .d-product-object.is-preview-ready::before,
+      .d-product-object.is-preview-ready::after,
+      .d-product-object.is-image-ready::before,
+      .d-product-object.is-image-ready::after {
+        opacity: 0;
+        animation: none;
+      }
+
+      .d-product-img {
+        position: relative;
+        z-index: 1;
+      }
+
+      .js .d-product-img {
+        opacity: 0;
+      }
+
+      .js .d-product-object.is-preview-ready .d-product-img,
+      .js .d-product-object.is-image-ready .d-product-img {
+        opacity: 1;
+      }
+
+      html:not(.js) .d-product-object::before,
+      html:not(.js) .d-product-object::after {
         display: none;
       }
 
@@ -6038,7 +6116,7 @@
           width: 56px;
           height: 12px;
           border-radius: 50%;
-          background: rgba(183,232,0,.42);
+          background: rgba(16,19,15,.2);
           filter: blur(10px);
           pointer-events: none;
           transform: translateX(-50%) scale(.2);
@@ -6615,6 +6693,8 @@
         }
       }
     </style>
+    <link rel="stylesheet" href="ai-portfolio-concepts.css" />
+    <link rel="stylesheet" href="handwriting.css" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to main content</a>
@@ -6665,10 +6745,10 @@
       <div class="desktop-experience">
         <section class="d-hero" id="about" aria-labelledby="d-hero-title">
           <picture>
-            <source media="(min-width: 761px)" srcset="assets/hero-minimal-original.png" />
+            <source media="(min-width: 761px)" srcset="assets/optimized/hero-minimal-original.webp" type="image/webp" />
             <img
               class="d-hero__photo"
-              src="assets/hero-minimal-original.png"
+              src="assets/optimized/hero-minimal-original.webp"
               alt="Jiaying Chen standing in sportswear against a monochrome studio background, with a fluorescent green offset outline"
               width="1086"
               height="1448"
@@ -6677,8 +6757,7 @@
           </picture>
           <div class="d-hero__content">
             <p class="d-hero__kicker">Jiaying Chen · Shanghai</p>
-            <h1 id="d-hero-title"><span>Innovation.</span><span><em>Brand.</em></span><span>Growth.</span></h1>
-            <p class="d-hero__career">Strategist across consumer products · Instant retail</p>
+            <h1 class="d-hero__statement" id="d-hero-title">Hi, I’m Jiaying Chen — an innovation strategist working across brands and platforms, and now building with AI. <span class="d-hero__trait"><span class="handword handword--sporty"><span class="handword__text">Sporty</span></span> in spirit,</span> <span class="d-hero__trait"><span class="handword handword--tender"><span class="handword__text">tender</span></span> in how</span> I see people, and <span class="d-hero__trait"><span class="handword handword--curious"><span class="handword__text">curious</span></span> about</span> what comes next.</h1>
           </div>
           <p class="d-hero__scroll" aria-hidden="true">Scroll to explore</p>
         </section>
@@ -6688,7 +6767,7 @@
             <div class="d-capabilities__topline">
               <div>
                 <p class="d-eyebrow">Capabilities / 04</p>
-                <h2 id="d-capabilities-title">From insight to <em>growth.</em></h2>
+                <h2 id="d-capabilities-title">HOW INSIGHT BECOMES <span class="handword handword--momentum"><span class="handword__text">momentum.</span></span></h2>
               </div>
               <p class="d-capabilities__hint">Scroll to unfold</p>
             </div>
@@ -6746,77 +6825,77 @@
             <header class="d-products__header">
               <div>
                 <p class="d-eyebrow">Selected product work / 2022—2023 · Click an object</p>
-                <h2 id="d-products-title">From consumer need to <em>launch.</em></h2>
+                <h2 id="d-products-title">GIVING <span class="handword handword--shape"><span class="handword__text">shape</span></span> TO NEEDS NOT YET NAMED.</h2>
               </div>
             </header>
 
             <div class="d-stilllife-scene" role="group" aria-label="Selected product work moving from left to right in a continuous product river" data-product-scene>
               <article class="d-stilllife-item" data-product-item data-product-index="01" data-product-name="Classic Milk Tea" data-product-volume="360 ML" data-product-story="milk-tea">
                 <button class="d-product-trigger" type="button" aria-expanded="false" aria-controls="product-evidence" aria-label="Open product notes for Classic Milk Tea, 360 millilitres">
-                  <span class="d-product-object"><img class="d-product-img" src="assets/works/processed/milk-tea-classic-360.png" alt="Classic milk tea bottle" width="330" height="725" loading="lazy" decoding="async" /></span>
+                  <span class="d-product-object"><img class="d-product-img" src="assets/optimized/previews/milk-tea-classic-360.webp" data-product-src="assets/optimized/products/milk-tea-classic-360.webp" alt="Classic milk tea bottle" width="255" height="560" loading="eager" decoding="async" fetchpriority="high" /></span>
                   <span class="d-acrylic-plinth" aria-hidden="true"><span class="d-acrylic-plinth__top"></span><span class="d-acrylic-plinth__front"></span><span class="d-acrylic-plinth__side"></span></span>
                   <span class="d-product-label" aria-hidden="true">01 / Classic Milk Tea / 360 ML</span>
                 </button>
               </article>
               <article class="d-stilllife-item" data-product-item data-product-index="02" data-product-name="MAXX" data-product-volume="480 ML" data-product-story="maxx">
                 <button class="d-product-trigger" type="button" aria-expanded="false" aria-controls="product-evidence" aria-label="Open product notes for MAXX, 480 millilitres">
-                  <span class="d-product-object"><img class="d-product-img" src="assets/works/processed/maxx-480.png" alt="MAXX carbonated drink bottle" width="266" height="745" loading="lazy" decoding="async" /></span>
+                  <span class="d-product-object"><img class="d-product-img" src="assets/optimized/previews/maxx-480.webp" data-product-src="assets/optimized/products/maxx-480.webp" alt="MAXX carbonated drink bottle" width="200" height="560" loading="eager" decoding="async" fetchpriority="high" /></span>
                   <span class="d-acrylic-plinth" aria-hidden="true"><span class="d-acrylic-plinth__top"></span><span class="d-acrylic-plinth__front"></span><span class="d-acrylic-plinth__side"></span></span>
                   <span class="d-product-label" aria-hidden="true">02 / MAXX / 480 ML</span>
                 </button>
               </article>
               <article class="d-stilllife-item" data-product-item data-product-index="03" data-product-name="Red Bean Milk Tea" data-product-volume="450 ML" data-product-story="milk-tea">
                 <button class="d-product-trigger" type="button" aria-expanded="false" aria-controls="product-evidence" aria-label="Open product notes for Red Bean Milk Tea, 450 millilitres">
-                  <span class="d-product-object"><img class="d-product-img" src="assets/works/processed/milk-tea-bean-450.png" alt="Milk tea with bean paste bottle, front view" width="433" height="958" loading="lazy" decoding="async" /></span>
+                  <span class="d-product-object"><img class="d-product-img" src="assets/optimized/previews/milk-tea-bean-450.webp" data-product-src="assets/optimized/products/milk-tea-bean-450.webp" alt="Milk tea with bean paste bottle, front view" width="253" height="560" loading="eager" decoding="async" fetchpriority="high" /></span>
                   <span class="d-acrylic-plinth" aria-hidden="true"><span class="d-acrylic-plinth__top"></span><span class="d-acrylic-plinth__front"></span><span class="d-acrylic-plinth__side"></span></span>
                   <span class="d-product-label" aria-hidden="true">03 / Red Bean Milk Tea / 450 ML</span>
                 </button>
               </article>
               <article class="d-stilllife-item" data-product-item data-product-index="04" data-product-name="Rancha Jasmine" data-product-volume="500 ML" data-product-story="rancha">
                 <button class="d-product-trigger" type="button" aria-expanded="false" aria-controls="product-evidence" aria-label="Open product notes for Rancha Jasmine, 500 millilitres">
-                  <span class="d-product-object"><img class="d-product-img" src="assets/works/processed/rancha-jasmine-500.png" alt="Jasmine Rancha tea bottle" width="245" height="733" loading="lazy" decoding="async" /></span>
+                  <span class="d-product-object"><img class="d-product-img" src="assets/optimized/previews/rancha-jasmine-500.webp" data-product-src="assets/optimized/products/rancha-jasmine-500.webp" alt="Jasmine Rancha tea bottle" width="187" height="560" loading="eager" decoding="async" fetchpriority="high" /></span>
                   <span class="d-acrylic-plinth" aria-hidden="true"><span class="d-acrylic-plinth__top"></span><span class="d-acrylic-plinth__front"></span><span class="d-acrylic-plinth__side"></span></span>
                   <span class="d-product-label" aria-hidden="true">04 / Rancha Jasmine / 500 ML</span>
                 </button>
               </article>
               <article class="d-stilllife-item" data-product-item data-product-index="05" data-product-name="Manfen Orange" data-product-volume="280 ML" data-product-story="orange">
                 <button class="d-product-trigger" type="button" aria-expanded="false" aria-controls="product-evidence" aria-label="Open product notes for Manfen Orange, 280 millilitres">
-                  <span class="d-product-object"><img class="d-product-img" src="assets/works/processed/orange-280.png" alt="Orange beverage bottle" width="412" height="1209" loading="lazy" decoding="async" /></span>
+                  <span class="d-product-object"><img class="d-product-img" src="assets/optimized/previews/orange-280.webp" data-product-src="assets/optimized/products/orange-280.webp" alt="Orange beverage bottle" width="191" height="560" loading="eager" decoding="async" fetchpriority="high" /></span>
                   <span class="d-acrylic-plinth" aria-hidden="true"><span class="d-acrylic-plinth__top"></span><span class="d-acrylic-plinth__front"></span><span class="d-acrylic-plinth__side"></span></span>
                   <span class="d-product-label" aria-hidden="true">05 / Manfen Orange / 280 ML</span>
                 </button>
               </article>
               <article class="d-stilllife-item" data-product-item data-product-index="06" data-product-name="Strawberry Milk Tea" data-product-volume="360 ML" data-product-story="milk-tea">
                 <button class="d-product-trigger" type="button" aria-expanded="false" aria-controls="product-evidence" aria-label="Open product notes for Strawberry Milk Tea, 360 millilitres">
-                  <span class="d-product-object"><img class="d-product-img" src="assets/works/processed/milk-tea-strawberry-360.png" alt="Strawberry milk tea bottle" width="330" height="725" loading="lazy" decoding="async" /></span>
+                  <span class="d-product-object"><img class="d-product-img" src="assets/optimized/previews/milk-tea-strawberry-360.webp" data-product-src="assets/optimized/products/milk-tea-strawberry-360.webp" alt="Strawberry milk tea bottle" width="255" height="560" loading="eager" decoding="async" fetchpriority="high" /></span>
                   <span class="d-acrylic-plinth" aria-hidden="true"><span class="d-acrylic-plinth__top"></span><span class="d-acrylic-plinth__front"></span><span class="d-acrylic-plinth__side"></span></span>
                   <span class="d-product-label" aria-hidden="true">06 / Strawberry Milk Tea / 360 ML</span>
                 </button>
               </article>
               <article class="d-stilllife-item" data-product-item data-product-index="07" data-product-name="Pure Water" data-product-volume="550 ML" data-product-story="water">
                 <button class="d-product-trigger" type="button" aria-expanded="false" aria-controls="product-evidence" aria-label="Open product notes for Pure Water, approximately 550 millilitres">
-                  <span class="d-product-object"><img class="d-product-img" src="assets/works/processed/pure-water.png" alt="Pure water bottle, front view" width="415" height="1279" loading="lazy" decoding="async" /></span>
+                  <span class="d-product-object"><img class="d-product-img" src="assets/optimized/previews/pure-water.webp" data-product-src="assets/optimized/products/pure-water.webp" alt="Pure water bottle, front view" width="182" height="560" loading="eager" decoding="async" fetchpriority="high" /></span>
                   <span class="d-acrylic-plinth" aria-hidden="true"><span class="d-acrylic-plinth__top"></span><span class="d-acrylic-plinth__front"></span><span class="d-acrylic-plinth__side"></span></span>
                   <span class="d-product-label" aria-hidden="true">07 / Pure Water / 550 ML</span>
                 </button>
               </article>
               <article class="d-stilllife-item" data-product-item data-product-index="08" data-product-name="Rancha Oolong" data-product-volume="500 ML" data-product-story="rancha">
                 <button class="d-product-trigger" type="button" aria-expanded="false" aria-controls="product-evidence" aria-label="Open product notes for Rancha Oolong, 500 millilitres">
-                  <span class="d-product-object"><img class="d-product-img" src="assets/works/processed/rancha-oolong-500.png" alt="Roasted oolong Rancha tea bottle" width="240" height="716" loading="lazy" decoding="async" /></span>
+                  <span class="d-product-object"><img class="d-product-img" src="assets/optimized/previews/rancha-oolong-500.webp" data-product-src="assets/optimized/products/rancha-oolong-500.webp" alt="Roasted oolong Rancha tea bottle" width="188" height="560" loading="eager" decoding="async" fetchpriority="high" /></span>
                   <span class="d-acrylic-plinth" aria-hidden="true"><span class="d-acrylic-plinth__top"></span><span class="d-acrylic-plinth__front"></span><span class="d-acrylic-plinth__side"></span></span>
                   <span class="d-product-label" aria-hidden="true">08 / Rancha Oolong / 500 ML</span>
                 </button>
               </article>
               <article class="d-stilllife-item" data-product-item data-product-index="09" data-product-name="Jasmine Milk Green" data-product-volume="360 ML" data-product-story="milk-tea">
                 <button class="d-product-trigger" type="button" aria-expanded="false" aria-controls="product-evidence" aria-label="Open product notes for Jasmine Milk Green, 360 millilitres">
-                  <span class="d-product-object"><img class="d-product-img" src="assets/works/processed/milk-tea-jasmine-360.png" alt="Jasmine milk green tea bottle" width="329" height="725" loading="lazy" decoding="async" /></span>
+                  <span class="d-product-object"><img class="d-product-img" src="assets/optimized/previews/milk-tea-jasmine-360.webp" data-product-src="assets/optimized/products/milk-tea-jasmine-360.webp" alt="Jasmine milk green tea bottle" width="254" height="560" loading="eager" decoding="async" fetchpriority="high" /></span>
                   <span class="d-acrylic-plinth" aria-hidden="true"><span class="d-acrylic-plinth__top"></span><span class="d-acrylic-plinth__front"></span><span class="d-acrylic-plinth__side"></span></span>
                   <span class="d-product-label" aria-hidden="true">09 / Jasmine Milk Green / 360 ML</span>
                 </button>
               </article>
               <article class="d-stilllife-item" data-product-item data-product-index="10" data-product-name="Manfen Grapefruit" data-product-volume="380 ML" data-product-story="grapefruit">
                 <button class="d-product-trigger" type="button" aria-expanded="false" aria-controls="product-evidence" aria-label="Open product notes for Manfen Grapefruit sparkling juice, 380 millilitres">
-                  <span class="d-product-object"><img class="d-product-img" src="assets/products/manfen-grapefruit-sparkling-juice-380ml.png" alt="Manfen Super C grapefruit sparkling juice bottle" width="516" height="1508" loading="lazy" decoding="async" /></span>
+                  <span class="d-product-object"><img class="d-product-img" src="assets/optimized/previews/manfen-grapefruit-sparkling-juice-380ml.webp" data-product-src="assets/optimized/products/manfen-grapefruit-sparkling-juice-380ml.webp" alt="Manfen Super C grapefruit sparkling juice bottle" width="192" height="560" loading="eager" decoding="async" fetchpriority="high" /></span>
                   <span class="d-acrylic-plinth" aria-hidden="true"><span class="d-acrylic-plinth__top"></span><span class="d-acrylic-plinth__front"></span><span class="d-acrylic-plinth__side"></span></span>
                   <span class="d-product-label" aria-hidden="true">10 / Manfen Grapefruit / 380 ML</span>
                 </button>
@@ -6832,7 +6911,7 @@
                 </header>
                 <div class="d-product-evidence__body">
                   <figure class="d-product-evidence__poster">
-                    <img src="assets/product-stories/product-milk-tea-poster-v2.jpg" alt="Campaign poster for Classic Milk Tea" data-evidence-image />
+                    <img src="assets/optimized/posters/product-milk-tea-poster-v2.webp" alt="Campaign poster for Classic Milk Tea" data-evidence-image />
                     <div class="d-product-evidence__poster-placeholder" data-evidence-placeholder hidden>Campaign visual placeholder</div>
                   </figure>
                   <div class="d-product-evidence__notes">
@@ -6849,12 +6928,130 @@
           </div>
         </section>
 
+        <section class="ai-practice" id="ai-work" aria-labelledby="ai-practice-title" data-ai-practice>
+          <div class="ai-practice__journey" data-ai-journey>
+            <div class="ai-practice__sticky">
+              <div class="ai-practice__shell ai-practice__stage-shell">
+                <button class="ai-language-toggle ai-language-toggle--stage" type="button" data-ai-language-toggle aria-label="Switch AI Practice language to Chinese" aria-pressed="false"><span class="is-active">EN</span><i>/</i><span>中文</span></button>
+                <div class="ai-practice__stage">
+                  <div class="ai-orbit" aria-label="Choose an AI practice project" data-ai-aria-en="Choose an AI practice project" data-ai-aria-zh="选择一个 AI 实践项目">
+                    <div class="ai-orbit__ring" data-ai-orbit-ring>
+                      <button class="is-active" type="button" data-ai-orbit-item="0" aria-pressed="true"><strong data-ai-orbit-label data-ai-en="Movie Soundtrack Finder" data-ai-zh="电影配乐检索器">Movie Soundtrack Finder</strong></button>
+                      <button type="button" data-ai-orbit-item="1" aria-pressed="false"><strong data-ai-orbit-label data-ai-en="Work / Life Bookmark Switcher" data-ai-zh="工作 / 生活书签切换器">Work / Life Bookmark Switcher</strong></button>
+                      <button type="button" data-ai-orbit-item="2" aria-pressed="false"><strong data-ai-orbit-label data-ai-en="Shanghai Job Radar" data-ai-zh="上海外企岗位雷达">Shanghai Job Radar</strong></button>
+                      <button type="button" data-ai-orbit-item="3" aria-pressed="false"><strong data-ai-orbit-label data-ai-en="Personal Therapy Notes System" data-ai-zh="私人心理咨询笔记系统">Personal Therapy Notes System</strong></button>
+                      <button type="button" data-ai-orbit-item="4" aria-pressed="false"><strong data-ai-orbit-label data-ai-en="Personal AI News Briefing" data-ai-zh="个人 AI 每日简报">Personal AI News Briefing</strong></button>
+                      <button type="button" data-ai-orbit-item="5" aria-pressed="false"><strong data-ai-orbit-label data-ai-en="AI Magazine Reader" data-ai-zh="AI 外刊阅读器">AI Magazine Reader</strong></button>
+                    </div>
+                    <span class="ai-orbit__indicator" aria-hidden="true"></span>
+                  </div>
+
+                  <div class="ai-practice__display" aria-live="polite">
+                    <h2 class="ai-practice__title" id="ai-practice-title">BEING AN <span class="handword handword--ai-builder"><span class="handword__text">AI BUILDER.</span></span></h2>
+                    <article class="ai-practice-project is-active" data-ai-practice-project="0" aria-hidden="false">
+                      <figure class="ai-practice-media ai-practice-media--image">
+                        <img src="assets/ai-portfolio/project-screens/movie-soundtrack-ui.jpg" srcset="assets/ai-portfolio/project-screens/movie-soundtrack-ui-900.jpg 900w, assets/ai-portfolio/project-screens/movie-soundtrack-ui.jpg 1800w" sizes="(max-width: 900px) calc(100vw - 28px), 820px" width="1800" height="990" loading="lazy" decoding="async" alt="Real Movie Music interface showing an Interstellar soundtrack timeline, filters and scene moments" data-ai-alt-en="Real Movie Music interface showing an Interstellar soundtrack timeline, filters and scene moments" data-ai-alt-zh="真实的电影配乐网站界面，展示《星际穿越》的配乐时间轴、筛选与场景节点" />
+                      </figure>
+                      <div class="ai-practice-project__copy">
+                        <div class="ai-practice-project__heading">
+                          <h3 data-ai-en="Movie Soundtrack Finder" data-ai-zh="电影配乐检索器">Movie Soundtrack Finder</h3>
+                          <nav class="ai-practice-project__links" aria-label="Movie Soundtrack Finder project links" data-ai-aria-en="Movie Soundtrack Finder project links" data-ai-aria-zh="电影配乐检索器项目链接">
+                            <a href="https://movie-music.vercel.app" target="_blank" rel="noreferrer"><span data-ai-en="Live" data-ai-zh="体验">Live</span><i aria-hidden="true">↗</i></a>
+                          </nav>
+                        </div>
+                        <ul aria-label="Project keywords" data-ai-aria-en="Project keywords" data-ai-aria-zh="项目关键词"><li data-ai-en="Film research" data-ai-zh="电影研究">Film research</li><li data-ai-en="Emotion search" data-ai-zh="情绪检索">Emotion search</li><li data-ai-en="Music data" data-ai-zh="音乐数据">Music data</li></ul>
+                        <footer><span data-ai-en="2026 · Public prototype" data-ai-zh="2026 · 公开原型">2026 · Public prototype</span><span data-ai-en="Independent product" data-ai-zh="独立产品">Independent product</span></footer>
+                      </div>
+                    </article>
+
+                    <article class="ai-practice-project" data-ai-practice-project="1" aria-hidden="true">
+                      <figure class="ai-practice-media ai-practice-media--image">
+                        <img src="assets/ai-portfolio/project-screens/bookmark-switcher-ui.jpg" srcset="assets/ai-portfolio/project-screens/bookmark-switcher-ui-900.jpg 900w, assets/ai-portfolio/project-screens/bookmark-switcher-ui.jpg 1672w" sizes="(max-width: 900px) calc(100vw - 28px), 820px" width="1672" height="941" loading="lazy" decoding="async" alt="Real Chrome bookmark switcher comparison showing Work Mode and Life Mode" data-ai-alt-en="Real Chrome bookmark switcher comparison showing Work Mode and Life Mode" data-ai-alt-zh="真实的 Chrome 书签切换插件界面，对比工作模式与生活模式" />
+                      </figure>
+                      <div class="ai-practice-project__copy">
+                        <div class="ai-practice-project__heading">
+                          <h3 data-ai-en="Work / Life Bookmark Switcher" data-ai-zh="工作 / 生活书签切换器">Work / Life Bookmark Switcher</h3>
+                        </div>
+                        <ul aria-label="Project keywords" data-ai-aria-en="Project keywords" data-ai-aria-zh="项目关键词"><li>Chrome</li><li data-ai-en="Context switch" data-ai-zh="场景切换">Context switch</li><li data-ai-en="Daily utility" data-ai-zh="每日工具">Daily utility</li></ul>
+                        <footer><span data-ai-en="2026 · Live Chrome extension" data-ai-zh="2026 · 已安装插件">2026 · Live Chrome extension</span><span data-ai-en="Independent product" data-ai-zh="独立产品">Independent product</span></footer>
+                      </div>
+                    </article>
+
+                    <article class="ai-practice-project" data-ai-practice-project="2" aria-hidden="true">
+                      <figure class="ai-practice-media ai-practice-media--image">
+                        <img src="assets/ai-portfolio/project-screens/job-radar-ui.jpg" srcset="assets/ai-portfolio/project-screens/job-radar-ui-900.jpg 900w, assets/ai-portfolio/project-screens/job-radar-ui.jpg 1800w" sizes="(max-width: 900px) calc(100vw - 28px), 820px" width="1800" height="904" loading="lazy" decoding="async" alt="Real Feishu Base job radar with ranked opportunities, role details and application fields" data-ai-alt-en="Real Feishu Base job radar with ranked opportunities, role details and application fields" data-ai-alt-zh="真实的飞书多维表格岗位雷达，展示岗位排序、职责详情与投递字段" />
+                      </figure>
+                      <div class="ai-practice-project__copy">
+                        <div class="ai-practice-project__heading">
+                          <h3 data-ai-en="Shanghai Job Radar" data-ai-zh="上海外企岗位雷达">Shanghai Job Radar</h3>
+                          <nav class="ai-practice-project__links" aria-label="Shanghai Job Radar project links" data-ai-aria-en="Shanghai Job Radar project links" data-ai-aria-zh="上海外企岗位雷达项目链接">
+                            <a href="https://shanghai-job-radar.vercel.app" target="_blank" rel="noreferrer"><span data-ai-en="Live" data-ai-zh="体验">Live</span><i aria-hidden="true">↗</i></a>
+                            <a href="https://github.com/cicicjy/shanghai-job-radar" target="_blank" rel="noreferrer"><span>GitHub</span><i aria-hidden="true">↗</i></a>
+                          </nav>
+                        </div>
+                        <ul aria-label="Project keywords" data-ai-aria-en="Project keywords" data-ai-aria-zh="项目关键词"><li data-ai-en="Official sources" data-ai-zh="官网信源">Official sources</li><li data-ai-en="Role fit" data-ai-zh="岗位匹配">Role fit</li><li data-ai-en="Market signals" data-ai-zh="市场信号">Market signals</li></ul>
+                        <footer><span data-ai-en="2026 · Running daily" data-ai-zh="2026 · 每日运行">2026 · Running daily</span><span data-ai-en="AI workflow" data-ai-zh="AI 工作流">AI workflow</span></footer>
+                      </div>
+                    </article>
+
+                    <article class="ai-practice-project" data-ai-practice-project="3" aria-hidden="true">
+                      <figure class="ai-practice-media ai-practice-media--image">
+                        <img src="assets/ai-portfolio/project-screens/therapy-notes-ui.jpg" srcset="assets/ai-portfolio/project-screens/therapy-notes-ui-900.jpg 900w, assets/ai-portfolio/project-screens/therapy-notes-ui.jpg 1800w" sizes="(max-width: 900px) calc(100vw - 28px), 820px" width="1800" height="1129" loading="lazy" decoding="async" alt="Anonymized Obsidian graph view connecting therapy notes and recurring life themes" data-ai-alt-en="Anonymized Obsidian graph view connecting therapy notes and recurring life themes" data-ai-alt-zh="经过匿名处理的 Obsidian 关系图，连接心理咨询笔记与反复出现的人生主题" />
+                      </figure>
+                      <div class="ai-practice-project__copy">
+                        <div class="ai-practice-project__heading">
+                          <h3 data-ai-en="Personal Therapy Notes System" data-ai-zh="私人心理咨询笔记系统">Personal Therapy Notes System</h3>
+                        </div>
+                        <ul aria-label="Project keywords" data-ai-aria-en="Project keywords" data-ai-aria-zh="项目关键词"><li data-ai-en="Therapy archive" data-ai-zh="咨询档案">Therapy archive</li><li data-ai-en="Life patterns" data-ai-zh="人生模式">Life patterns</li><li data-ai-en="Reflection" data-ai-zh="自我理解">Reflection</li></ul>
+                        <footer><span data-ai-en="Ongoing · Private system" data-ai-zh="持续更新 · 私人系统">Ongoing · Private system</span><span data-ai-en="Personal knowledge system" data-ai-zh="个人知识系统">Personal knowledge system</span></footer>
+                      </div>
+                    </article>
+
+                    <article class="ai-practice-project" data-ai-practice-project="4" aria-hidden="true">
+                      <figure class="ai-practice-media ai-practice-media--image">
+                        <img src="assets/ai-portfolio/project-screens/ai-news-radar-ui.jpg" srcset="assets/ai-portfolio/project-screens/ai-news-radar-ui-900.jpg 900w, assets/ai-portfolio/project-screens/ai-news-radar-ui.jpg 1800w" sizes="(max-width: 900px) calc(100vw - 28px), 820px" width="1800" height="989" loading="lazy" decoding="async" alt="Real personal AI intelligence dashboard with a weighted daily reading queue" data-ai-alt-en="Real personal AI intelligence dashboard with a weighted daily reading queue" data-ai-alt-zh="真实的个人 AI 情报面板，展示按个人权重排序的每日阅读队列" />
+                      </figure>
+                      <div class="ai-practice-project__copy">
+                        <div class="ai-practice-project__heading">
+                          <h3 data-ai-en="Personal AI News Briefing" data-ai-zh="个人 AI 每日简报">Personal AI News Briefing</h3>
+                          <nav class="ai-practice-project__links" aria-label="Personal AI News Briefing project links" data-ai-aria-en="Personal AI News Briefing project links" data-ai-aria-zh="个人 AI 每日简报项目链接">
+                            <a href="https://ai-founder-intel.vercel.app" target="_blank" rel="noreferrer"><span data-ai-en="Live" data-ai-zh="体验">Live</span><i aria-hidden="true">↗</i></a>
+                          </nav>
+                        </div>
+                        <ul aria-label="Project keywords" data-ai-aria-en="Project keywords" data-ai-aria-zh="项目关键词"><li data-ai-en="AI products" data-ai-zh="AI 产品">AI products</li><li>AIGC</li><li data-ai-en="Weighted feed" data-ai-zh="个性化权重">Weighted feed</li></ul>
+                        <footer><span data-ai-en="2026 · Working beta" data-ai-zh="2026 · 测试迭代中">2026 · Working beta</span><span data-ai-en="Personal knowledge engine" data-ai-zh="个人知识引擎">Personal knowledge engine</span></footer>
+                      </div>
+                    </article>
+
+                    <article class="ai-practice-project" data-ai-practice-project="5" aria-hidden="true">
+                      <figure class="ai-practice-media ai-practice-media--image">
+                        <img src="assets/ai-portfolio/project-screens/magazine-reader-ui.jpg" srcset="assets/ai-portfolio/project-screens/magazine-reader-ui-900.jpg 900w, assets/ai-portfolio/project-screens/magazine-reader-ui.jpg 1800w" sizes="(max-width: 900px) calc(100vw - 28px), 820px" width="1800" height="987" loading="lazy" decoding="async" alt="Real Morning Signal magazine reader showing seven source-grounded stories" data-ai-alt-en="Real Morning Signal magazine reader showing seven source-grounded stories" data-ai-alt-zh="真实的 Morning Signal 外刊阅读器，展示七条有原文依据的精选内容" />
+                      </figure>
+                      <div class="ai-practice-project__copy">
+                        <div class="ai-practice-project__heading">
+                          <h3 data-ai-en="AI Magazine Reader" data-ai-zh="AI 外刊阅读器">AI Magazine Reader</h3>
+                          <nav class="ai-practice-project__links" aria-label="AI Magazine Reader project links" data-ai-aria-en="AI Magazine Reader project links" data-ai-aria-zh="AI 外刊阅读器项目链接">
+                            <a href="https://wayyuuameu.aiforce.cloud/app/app_17aaj0gerqv" target="_blank" rel="noreferrer"><span data-ai-en="Live" data-ai-zh="体验">Live</span><i aria-hidden="true">↗</i></a>
+                          </nav>
+                        </div>
+                        <ul aria-label="Project keywords" data-ai-aria-en="Project keywords" data-ai-aria-zh="项目关键词"><li data-ai-en="Magazine inbox" data-ai-zh="外刊收件箱">Magazine inbox</li><li data-ai-en="Story selection" data-ai-zh="内容筛选">Story selection</li><li data-ai-en="Source Q&amp;A" data-ai-zh="原文问答">Source Q&amp;A</li></ul>
+                        <footer><span data-ai-en="2026 · Public MVP" data-ai-zh="2026 · 公开 MVP">2026 · Public MVP</span><span data-ai-en="Independent product" data-ai-zh="独立产品">Independent product</span></footer>
+                      </div>
+                    </article>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section class="d-experience" id="experience" aria-labelledby="d-experience-title" data-resume-horizontal>
           <div class="d-resume">
             <h2 class="sr-only" id="d-experience-title">Resume and experience</h2>
             <div class="d-resume__body" data-resume-sticky>
               <div class="d-resume__profile">
-                <p class="d-resume__intro">Jiaying Chen is a growth-focused brand and category strategist based in Shanghai. She connects <em>consumer insight</em>, product innovation and instant retail growth—from diagnosis to cross-functional execution.</p>
+                <p class="d-resume__intro">My career has moved outward—from shaping products, to building retail propositions, to growing categories at platform scale. Each step has taught me to hold <em>the detail and the larger system</em> in view at the same time.</p>
                 <figure class="d-resume__photo">
                   <div class="d-resume__photo-frame">
                     <img src="assets/resume-profile.jpg" alt="Jiaying Chen reclining in sportswear in a bright studio portrait" width="5184" height="3888" loading="lazy" decoding="async" />
@@ -6867,8 +7064,8 @@
                 <div class="d-resume__track" data-resume-track>
                 <section class="d-resume__panel is-active" aria-labelledby="resume-work" data-resume-panel="0">
                   <div class="d-resume__panel-heading">
-                    <span>01 / Current practice</span>
-                    <strong>From product detail to platform scale.</strong>
+                    <span>Work Experience</span>
+                    <strong>FROM PRODUCT DETAIL TO PLATFORM <span class="handword handword--scale"><span class="handword__text">scale.</span></span></strong>
                   </div>
                   <div class="d-resume__group">
                   <h3 id="resume-work">Work Experience</h3>
@@ -6889,8 +7086,8 @@
 
                 <section class="d-resume__panel" aria-labelledby="resume-internships" data-resume-panel="1">
                   <div class="d-resume__panel-heading">
-                    <span>02 / Early range</span>
-                    <strong>Product, consulting and market-entry foundations.</strong>
+                    <span>Selected Internships</span>
+                    <strong>LEARNING TO <span class="handword handword--frame"><span class="handword__text">frame</span></span> THE RIGHT PROBLEM.</strong>
                   </div>
                   <div class="d-resume__group d-resume__group--internships">
                   <h3 id="resume-internships">Selected Internships</h3>
@@ -6911,8 +7108,8 @@
 
                 <section class="d-resume__panel d-resume__panel--credentials" aria-label="Education and skills" data-resume-panel="2">
                   <div class="d-resume__panel-heading">
-                    <span>03 / Foundation</span>
-                    <strong>Analytical training, cross-cultural range and working tools.</strong>
+                    <span>Education + Skill</span>
+                    <strong>TRAINED TO READ NUMBERS, CULTURES AND <span class="handword handword--context"><span class="handword__text">context.</span></span></strong>
                   </div>
                   <div class="d-resume__credentials-grid">
                   <section class="d-resume__group" aria-labelledby="resume-education">
@@ -6958,7 +7155,7 @@
           <div class="d-shell">
             <p class="d-eyebrow">Shanghai · Open to thoughtful conversations</p>
             <div class="d-contact__line">
-              <h2 id="d-contact-title">Let’s make the next <em>move.</em></h2>
+              <h2 id="d-contact-title">LET’S MAKE THE NEXT <span class="handword handword--move"><span class="handword__text">move.</span></span></h2>
               <div class="d-contact__actions">
                 <a href="mailto:cjy_108@126.com">Start a conversation ↗</a>
                 <button class="copy-email" type="button" data-copy-email data-email="cjy_108@126.com"><span>cjy_108@126.com</span><span role="status" aria-live="polite">Copy</span></button>
@@ -7017,8 +7214,8 @@
                   src="./assets/hero-cici-outline.jpg"
                   width="1122"
                   height="1402"
-                  loading="eager"
-                  fetchpriority="high"
+                  loading="lazy"
+                  fetchpriority="low"
                   alt="Portrait of Cici"
                 />
               </picture>
@@ -7390,6 +7587,9 @@
       const capabilityStickers = Array.from(document.querySelectorAll("[data-cap-sticker]"));
       const productScene = document.querySelector("[data-product-scene]");
       const productItems = Array.from(document.querySelectorAll("[data-product-item]"));
+      const productImages = productItems.map(function (item) {
+        return item.querySelector(".d-product-img");
+      }).filter(Boolean);
       const productEvidence = document.querySelector("[data-product-evidence]");
       const productEvidenceImage = document.querySelector("[data-evidence-image]");
       const productEvidencePlaceholder = document.querySelector("[data-evidence-placeholder]");
@@ -7411,6 +7611,8 @@
       let productRiverIsPaused = false;
       let productRiverResumeTimer = 0;
       let productEvidenceImageRequest = 0;
+      let productFullLoadStarted = false;
+      let productPosterWarmupQueued = false;
       const productPosterCache = new Map();
 
       const productStories = {
@@ -7441,16 +7643,16 @@
       };
 
       const productPosters = {
-        "01": "assets/product-stories/product-milk-tea-poster-v2.jpg",
-        "02": "assets/product-stories/product-02-maxx-poster-v2.jpg",
-        "03": "assets/product-stories/product-milk-tea-poster-v2.jpg",
-        "04": "assets/product-stories/product-rancha-poster-v2.jpg",
-        "05": "assets/product-stories/product-05-manfen-orange-poster-v2.jpg",
-        "06": "assets/product-stories/product-milk-tea-poster-v2.jpg",
-        "07": "assets/product-stories/product-07-pure-water-poster-v2.jpg",
-        "08": "assets/product-stories/product-rancha-poster-v2.jpg",
-        "09": "assets/product-stories/product-milk-tea-poster-v2.jpg",
-        "10": "assets/product-stories/product-10-manfen-grapefruit-poster.jpg",
+        "01": "assets/optimized/posters/product-milk-tea-poster-v2.webp",
+        "02": "assets/optimized/posters/product-02-maxx-poster-v2.webp",
+        "03": "assets/optimized/posters/product-milk-tea-poster-v2.webp",
+        "04": "assets/optimized/posters/product-rancha-poster-v2.webp",
+        "05": "assets/optimized/posters/product-05-manfen-orange-poster-v2.webp",
+        "06": "assets/optimized/posters/product-milk-tea-poster-v2.webp",
+        "07": "assets/optimized/posters/product-07-pure-water-poster-v2.webp",
+        "08": "assets/optimized/posters/product-rancha-poster-v2.webp",
+        "09": "assets/optimized/posters/product-milk-tea-poster-v2.webp",
+        "10": "assets/optimized/posters/product-10-manfen-grapefruit-poster.webp",
       };
 
       function getProductPoster(item) {
@@ -7504,6 +7706,105 @@
       let vendingStatus = null;
       let vendingIsDispensing = false;
 
+      function warmProductPosters() {
+        if (productPosterWarmupQueued) return;
+        productPosterWarmupQueued = true;
+        const warm = function () {
+          productItems.forEach(function (item) {
+            preloadProductPoster(item);
+          });
+        };
+        if ("requestIdleCallback" in window) {
+          window.requestIdleCallback(warm, { timeout: 1600 });
+        } else {
+          window.setTimeout(warm, 400);
+        }
+      }
+
+      function updateProductLoadingState() {
+        const previewCount = productImages.filter(function (image) {
+          return image.closest(".d-product-object")?.classList.contains("is-preview-ready");
+        }).length;
+        const readyCount = productImages.filter(function (image) {
+          return image.closest(".d-product-object")?.classList.contains("is-image-ready");
+        }).length;
+        if (readyCount === productImages.length) warmProductPosters();
+        if (!vendingStatus || vendingIsDispensing) return;
+        let status = "Stocking bottles…";
+        if (previewCount === productImages.length) status = "Bottles ready · Sharpening details…";
+        if (readyCount === productImages.length) status = "Machine ready · Select a bottle";
+        if (vendingStatus.textContent !== status) vendingStatus.textContent = status;
+      }
+
+      function loadFullProductImages() {
+        if (productFullLoadStarted) return;
+        productFullLoadStarted = true;
+
+        productImages.forEach(function (image) {
+          const source = image.dataset.productSrc;
+          const object = image.closest(".d-product-object");
+          if (!source || !object) return;
+
+          const preloader = new Image();
+          preloader.decoding = "async";
+          preloader.fetchPriority = "high";
+          preloader.addEventListener("load", async function () {
+            if (typeof preloader.decode === "function") {
+              try {
+                await preloader.decode();
+              } catch {
+                // A completed image can still reject decode in older browsers.
+              }
+            }
+            image.src = source;
+            image.removeAttribute("data-product-src");
+            if (typeof image.decode === "function") {
+              try {
+                await image.decode();
+              } catch {
+                // The decoded preloader keeps the replacement in memory.
+              }
+            }
+            if (!image.naturalWidth) return;
+            object.classList.add("is-image-ready");
+            updateProductLoadingState();
+          }, { once: true });
+          preloader.addEventListener("error", updateProductLoadingState, { once: true });
+          preloader.src = source;
+        });
+      }
+
+      function prepareProductPreview(image) {
+        const object = image.closest(".d-product-object");
+        if (!object) return;
+
+        const reveal = async function () {
+          if (typeof image.decode === "function") {
+            try {
+              await image.decode();
+            } catch {
+              // A completed image can still reject decode in older browsers.
+            }
+          }
+          if (!image.naturalWidth) return;
+          object.classList.add("is-preview-ready");
+          updateProductLoadingState();
+          const allPreviewsReady = productImages.every(function (candidate) {
+            return candidate.closest(".d-product-object")?.classList.contains("is-preview-ready");
+          });
+          if (allPreviewsReady) loadFullProductImages();
+        };
+
+        if (image.complete) {
+          reveal();
+          return;
+        }
+        image.addEventListener("load", reveal, { once: true });
+        image.addEventListener("error", updateProductLoadingState, { once: true });
+      }
+
+      productImages.forEach(prepareProductPreview);
+
       function buildVendingMachine() {
         if (!desktopMode.matches || !productScene || !productItems.length) return;
         if (productScene.classList.contains("is-vending-ready")) return;
@@ -7525,14 +7826,14 @@
           </div>
           <div class="d-vending-guide">
             <p class="d-vending-guide__kicker">Selected product work / Genki Forest</p>
-            <h3>Pick a bottle. <em>Unpack the thinking.</em></h3>
+            <h3>Pick a bottle.<span class="handword handword--unpack-thinking"><span class="handword__text">Unpack the thinking.</span></span></h3>
             <p class="d-vending-guide__copy">Each launch began with a specific consumer tension and ended in a concrete market move. Choose a bottle to see the strategy behind the pack—and the outcome it was built to deliver.</p>
             <div class="d-vending-steps" aria-hidden="true">
               <div class="d-vending-step"><strong>01</strong>Choose a launch</div>
               <div class="d-vending-step"><strong>02</strong>Watch it dispense</div>
               <div class="d-vending-step"><strong>03</strong>Read the case</div>
             </div>
-            <p class="d-vending-status" data-vending-status aria-live="polite">Machine ready · Select a bottle</p>
+            <p class="d-vending-status" data-vending-status aria-live="polite">Stocking bottles…</p>
           </div>
         `;
 
@@ -7547,6 +7848,7 @@
         vendingSlot = layout.querySelector("[data-vending-slot]");
         vendingStatus = layout.querySelector("[data-vending-status]");
         productScene.classList.add("is-vending-ready");
+        updateProductLoadingState();
         productScene.setAttribute(
           "aria-label",
           "Interactive product vending machine. Choose a beverage to dispense and open its product case.",
@@ -7697,7 +7999,7 @@
               { offset: 0, clipPath: "inset(5% 2% 5% 2%)", opacity: .92, transform: "translate3d(0,0,0) rotate(" + rotationDirection * 82 + "deg) scale(.8)", filter: "brightness(.86) drop-shadow(0 5px 4px rgba(16,19,15,.34))" },
               { offset: .34, clipPath: "inset(0 0 0 0)", opacity: 1, transform: "translate3d(18px,-18px,0) rotate(" + rotationDirection * 58 + "deg) scale(.9)", filter: "brightness(.96) drop-shadow(0 15px 11px rgba(16,19,15,.3))" },
               { offset: .72, clipPath: "inset(0 0 0 0)", opacity: 1, transform: "translate3d(38px,-54px,0) rotate(" + rotationDirection * 20 + "deg) scale(1.02)", filter: "drop-shadow(0 22px 15px rgba(16,19,15,.32))" },
-              { offset: 1, clipPath: "inset(0 0 0 0)", opacity: 1, transform: "translate3d(48px,-70px,0) rotate(0deg) scale(1.08)", filter: "drop-shadow(0 25px 18px rgba(16,19,15,.34)) drop-shadow(0 0 10px rgba(199,255,0,.32))" },
+              { offset: 1, clipPath: "inset(0 0 0 0)", opacity: 1, transform: "translate3d(48px,-70px,0) rotate(0deg) scale(1.08)", filter: "drop-shadow(0 25px 18px rgba(16,19,15,.34))" },
             ],
             { duration: 860, easing: "cubic-bezier(.16,.76,.2,1)", fill: "forwards" },
           );
@@ -7721,6 +8023,7 @@
           vendingMachine.classList.remove("is-releasing", "is-collecting");
           productScene.removeAttribute("aria-busy");
           vendingIsDispensing = false;
+          updateProductLoadingState();
         }
       }
 
@@ -7947,7 +8250,7 @@
         document.body.classList.remove("is-product-evidence-open");
         activeProductItem = null;
         queueProductRiverResume();
-        if (vendingStatus) vendingStatus.textContent = "Machine ready · Select a bottle";
+        updateProductLoadingState();
         if (restoreFocus) previousTrigger?.focus();
       }
 
@@ -8583,5 +8886,6 @@
       refreshLayout();
       updateScrollUI();
     </script>
+    <script src="ai-portfolio-concepts.js"></script>
   </body>
 </html>
