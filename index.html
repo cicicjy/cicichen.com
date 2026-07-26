@@ -7569,6 +7569,10 @@
       <p>© <span data-year></span> Cici</p>
     </footer>
 
+    <button class="back-to-top" type="button" data-back-to-top aria-label="Back to top">
+      <span class="back-to-top__arrow" aria-hidden="true"></span>
+    </button>
+
     <canvas class="lime-cursor-trail" data-lime-cursor-trail aria-hidden="true"></canvas>
     <span class="lime-cursor-dot" data-lime-cursor-dot aria-hidden="true"></span>
 
@@ -7577,6 +7581,7 @@
     <script>
       const header = document.querySelector("[data-header]");
       const progress = document.querySelector("[data-scroll-progress]");
+      const backToTop = document.querySelector("[data-back-to-top]");
       const menuToggle = document.querySelector("[data-menu-toggle]");
       const navigation = document.querySelector("[data-nav]");
       const navLinks = Array.from(document.querySelectorAll(".site-nav a, .d-nav a"));
@@ -8818,9 +8823,17 @@
         const ratio = maxScroll > 0 ? clamp(window.scrollY / maxScroll, 0, 1) : 0;
         progress?.style.setProperty("transform", "scaleX(" + ratio + ")");
         header?.classList.toggle("is-scrolled", window.scrollY > 18);
+        backToTop?.classList.toggle("is-visible", window.scrollY > window.innerHeight * 0.75);
         updateCapabilities();
         updateResumeRail();
       }
+
+      backToTop?.addEventListener("click", function () {
+        window.scrollTo({
+          top: 0,
+          behavior: reducedMotion.matches ? "auto" : "smooth",
+        });
+      });
 
       window.addEventListener(
         "scroll",
