@@ -199,6 +199,22 @@
 }
 
 @media (min-width: 761px) {
+  .d-capabilities__topline h2,
+  .d-products__header h2,
+  .ai-practice__title,
+  .d-contact h2 {
+    font-size: clamp(44px, 4.15vw, 72px);
+  }
+
+  .d-contact__actions > a,
+  .d-contact .copy-email {
+    width: 286px;
+  }
+
+  .d-contact .copy-email {
+    justify-content: space-between;
+  }
+
   .d-hero h1.d-hero__statement {
     max-width: min(730px, 45vw);
     font-size: clamp(37px, 3vw, 58px);
@@ -240,7 +256,6 @@
 
   .d-products__header h2 {
     max-width: none;
-    font-size: clamp(44px, 4.15vw, 72px);
     white-space: nowrap;
     text-wrap: nowrap;
   }
@@ -254,7 +269,7 @@
     margin: 0;
     color: #171913;
     font-family: var(--text);
-    font-size: clamp(25px, 2.2vw, 40px);
+    font-size: clamp(44px, 4.15vw, 72px);
     font-weight: 430;
     letter-spacing: -0.055em;
     line-height: 0.95;
@@ -360,6 +375,13 @@
 }
 
 @media (max-width: 760px) {
+  .d-capabilities__topline h2,
+  .d-products__header h2,
+  .ai-practice__title,
+  .d-contact h2 {
+    font-size: clamp(44px, 13vw, 58px);
+  }
+
   .back-to-top {
     right: 14px;
     bottom: 14px;

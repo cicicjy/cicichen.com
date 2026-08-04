@@ -7157,8 +7157,9 @@
             <div class="d-contact__line">
               <h2 id="d-contact-title">LET’S MAKE THE NEXT <span class="handword handword--move"><span class="handword__text">move.</span></span></h2>
               <div class="d-contact__actions">
-                <a href="mailto:cjy_108@126.com">Start a conversation ↗</a>
-                <button class="copy-email" type="button" data-copy-email data-email="cjy_108@126.com"><span>cjy_108@126.com</span><span role="status" aria-live="polite">Copy</span></button>
+                <a href="mailto:cicisnothere@gmail.com">Start a conversation ↗</a>
+                <button class="copy-email" type="button" data-copy-contact data-copy-value="cicisnothere@gmail.com" aria-label="Copy email address cicisnothere@gmail.com"><span>Email · cicisnothere@gmail.com</span><span role="status" aria-live="polite">Copy</span></button>
+                <button class="copy-email" type="button" data-copy-contact data-copy-value="cicichen_108" aria-label="Copy WeChat ID cicichen_108"><span>WeChat · cicichen_108</span><span role="status" aria-live="polite">Copy</span></button>
               </div>
             </div>
           </div>
@@ -7554,8 +7555,9 @@
           <div class="contact-layout">
             <p class="contact-copy">Let’s turn it into something real. I’m interested in thoughtful conversations around consumer products, category growth, brand–platform collaboration, and creative experiments.</p>
             <div class="contact-actions">
-              <a class="action-link action-link--solid" href="mailto:cjy_108@126.com">Start a conversation <span>↗</span></a>
-              <button class="copy-email" type="button" data-copy-email data-email="cjy_108@126.com"><span>cjy_108@126.com</span><span role="status" aria-live="polite">Copy</span></button>
+              <a class="action-link action-link--solid" href="mailto:cicisnothere@gmail.com">Start a conversation <span>↗</span></a>
+              <button class="copy-email" type="button" data-copy-contact data-copy-value="cicisnothere@gmail.com" aria-label="Copy email address cicisnothere@gmail.com"><span>Email · cicisnothere@gmail.com</span><span role="status" aria-live="polite">Copy</span></button>
+              <button class="copy-email" type="button" data-copy-contact data-copy-value="cicichen_108" aria-label="Copy WeChat ID cicichen_108"><span>WeChat · cicichen_108</span><span role="status" aria-live="polite">Copy</span></button>
             </div>
           </div>
         </div>
@@ -8148,18 +8150,18 @@
         reset?.addEventListener("click", clearPreview);
       });
 
-      document.querySelectorAll("[data-copy-email]").forEach(function (copyButton) {
+      document.querySelectorAll("[data-copy-contact]").forEach(function (copyButton) {
         const copyStatus = copyButton.querySelector("[role='status']");
         let copyTimer = 0;
 
         copyButton.addEventListener("click", async function () {
-          const email = copyButton.dataset.email;
-          if (!email || !copyStatus) return;
+          const contactValue = copyButton.dataset.copyValue;
+          if (!contactValue || !copyStatus) return;
 
           let copied = false;
           if (navigator.clipboard?.writeText && window.isSecureContext) {
             try {
-              await navigator.clipboard.writeText(email);
+              await navigator.clipboard.writeText(contactValue);
               copied = true;
             } catch {
               copied = false;
@@ -8170,7 +8172,7 @@
             let textarea = null;
             try {
               textarea = document.createElement("textarea");
-              textarea.value = email;
+              textarea.value = contactValue;
               textarea.setAttribute("readonly", "");
               textarea.style.position = "fixed";
               textarea.style.opacity = "0";
